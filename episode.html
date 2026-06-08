@@ -164,7 +164,7 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
     <li><a href="index.html#subscribe">Subscribe</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
-  <p class="footer-copy">© 2024 Beyond the Code. All rights reserved.</p>
+  <p class="footer-copy">© 2025 Beyond the Code. All rights reserved.</p>
 </footer>
 
 <script src="episodes-data.js"></script>
@@ -188,12 +188,20 @@ if (ep) {
   document.getElementById('ep-desc').textContent = ep.desc;
   document.getElementById('guest-name').textContent = ep.guest;
   document.getElementById('guest-bio').textContent = '';
-  document.getElementById('btn-spotify').href = ep.spotify !== '#' ? ep.spotify : '#';
-  document.getElementById('btn-apple').href = ep.apple !== '#' ? ep.apple : '#';
-  document.getElementById('btn-youtube').href = ep.youtube !== '#' ? ep.youtube : '#';
-  document.getElementById('share-spotify').href = ep.spotify !== '#' ? ep.spotify : '#';
-  document.getElementById('share-apple').href = ep.apple !== '#' ? ep.apple : '#';
-  document.getElementById('share-youtube').href = ep.youtube !== '#' ? ep.youtube : '#';
+  const APPLE_URL = 'https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418';
+  const SPOTIFY_SHOW = 'https://open.spotify.com/show/7x77TlOnI7BSz4fnIkhvVs';
+  const YOUTUBE_URL = 'https://www.youtube.com/@byndthecode';
+  const spotifyHref = (ep.spotify && ep.spotify !== '#') ? ep.spotify : SPOTIFY_SHOW;
+  document.getElementById('btn-apple').href = APPLE_URL;
+  document.getElementById('btn-spotify').href = spotifyHref;
+  document.getElementById('btn-youtube').href = YOUTUBE_URL;
+  document.getElementById('share-apple').href = APPLE_URL;
+  document.getElementById('share-spotify').href = spotifyHref;
+  document.getElementById('share-youtube').href = YOUTUBE_URL;
+  ['btn-apple','btn-spotify','btn-youtube','share-apple','share-spotify','share-youtube'].forEach(id => {
+    document.getElementById(id).target = '_blank';
+    document.getElementById(id).rel = 'noopener';
+  });
 
   // Related: 3 random other episodes
   const others = EPISODES.filter(e => e.id !== id);
