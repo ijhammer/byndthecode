@@ -495,12 +495,39 @@ const EPISODES = [
     bio: "Jonathan Benton is an AML and compliance expert specializing in the crypto sector, having led compliance functions at major digital asset businesses and advised regulators on AML frameworks."
   },
   {
-    id: 106,
-    guest: "Ricky Delandro",
-    title: "Consensus MIA: The Future of Crypto Law",
-    thumb: "assets/hero.jpg",
-    apple: "#", spotify: "#", youtube: "#",
-    desc: "Live from Consensus Miami — Ricky Delandro and Yitzy Hammer on the ground at the industry's biggest gathering, covering the regulatory shifts, legal debates, and conversations shaping crypto's future.",
-    bio: "Ricky Delandro is a crypto attorney and industry figure who has been at the intersection of law and digital assets since the early days of the industry."
+    id: 96,
+    guest: "Russ Davis",
+    title: "Shiba Inu Co-Founder on the $40B Meme Coin Explosion & What's Next",
+    thumb: "assets/E96_ Russ Davis.jpg",
+    apple: "#", spotify: "#", youtube: "https://youtu.be/wEKCX6zImqU",
+    desc: "Shiba Inu co-founder Russ Davis on building one of the most improbable success stories in crypto, the psychology of meme coins, and what actually drives a $40 billion market cap beyond the hype.",
+    bio: "Russ Davis is co-founder of the Shiba Inu project and a key architect of the broader ShibaArmy ecosystem. He is one of the most recognizable voices in meme coin culture and community-driven crypto projects."
+  },
+  {
+    id: 97,
+    guest: "Jacqueline Cooper",
+    title: "Crypto Law, Bitcoin Mining Hacks & Digital Estate Planning",
+    thumb: "assets/E97_ Jacqueline Cooper.jpg",
+    apple: "#", spotify: "#", youtube: "https://youtu.be/0vd5u_qmptw",
+    desc: "Attorney Jacqueline Cooper on the legal complexities of Bitcoin mining, what happens to your crypto when you die, and how digital estate planning is one of the most overlooked areas in the industry.",
+    bio: "Jacqueline Cooper is a crypto and blockchain attorney specializing in digital estate planning, Bitcoin mining law, and regulatory compliance for digital asset businesses."
+  },
+  {
+    id: 99,
+    guest: "Ari Redbord",
+    title: "How the US Tracks Crypto Crime — Inside the DOJ",
+    thumb: "assets/E99_ Ari Redbord.jpg",
+    apple: "#", spotify: "#", youtube: "https://youtu.be/qiH3TJzHKZs",
+    desc: "Former DOJ prosecutor Ari Redbord on the government's evolving approach to crypto crime, how TRM Labs is helping trace illicit funds, and what law enforcement can and cannot see on the blockchain.",
+    bio: "Ari Redbord is Head of Legal and Government Affairs at TRM Labs. He previously served as Senior Advisor to the Deputy Secretary and Under Secretary for Terrorism and Financial Intelligence at the U.S. Treasury Department."
+  },
+  {
+    id: 100,
+    guest: "Karen Knox",
+    title: "From North Carolina to Tel Aviv: Faith, Insurance & Crypto",
+    thumb: "assets/E100_ Karen Knox.jpg",
+    apple: "#", spotify: "#", youtube: "https://youtu.be/7lHMd00_YyI",
+    desc: "Karen Knox of Howden on her unlikely journey from North Carolina to the frontlines of crypto insurance in Tel Aviv, what institutional risk coverage for digital assets actually looks like, and why faith shapes her approach to an industry built on trustlessness.",
+    bio: "Karen Knox is a senior executive at Howden, one of the world's leading insurance broking groups, where she focuses on digital asset and cryptocurrency risk management solutions."
   }
 ];
