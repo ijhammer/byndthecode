@@ -3,529 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beyond the Code — Crypto Law Podcast</title>
+<title>Beyond the Code — Crypto Law Podcast with Yitzy Hammer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #C8FF00;
+  --black: #000;
+  --white: #fff;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
 
-  :root {
-    --accent: #C8FF00;
-    --black: #000;
-    --white: #fff;
-    --gray: #888;
-    --dark-gray: #111;
-  }
+/* Cursor */
+#cursor-dot {
+  position: fixed; top:0; left:0;
+  width:8px; height:8px;
+  background: var(--white);
+  border-radius:50%;
+  pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cursor-ring {
+  position:fixed; top:0; left:0;
+  width:36px; height:36px;
+  border:2px solid rgba(255,255,255,0.4);
+  border-radius:50%;
+  pointer-events:none; z-index:9998;
+  transform:translate(-50%,-50%);
+  transition: border-color 0.2s;
+}
+body:hover #cursor-ring { border-color: var(--accent); }
 
-  html { scroll-behavior: smooth; }
+/* Nav */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:24px 48px;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.85) 0%,transparent 100%);
+}
+.nav-logo img { height:36px; width:auto; object-fit:contain; }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  font-size:11px; font-weight:700; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--white); text-decoration:none;
+  opacity:0.65; transition:opacity 0.2s,color 0.2s;
+}
+.nav-links a:hover { opacity:1; color:var(--accent); }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    cursor: none;
-    overflow-x: hidden;
-  }
+/* ══════════════════════════════════════════
+   HERO — full-bleed studio photo
+══════════════════════════════════════════ */
+.hero {
+  position:relative;
+  height:100vh;
+  min-height:600px;
+  overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background: url('assets/studio.jpeg') center center / cover no-repeat;
+  filter:brightness(0.45);
+  transform:scale(1.04);
+  transition:transform 8s ease;
+}
+.hero:hover .hero-bg { transform:scale(1); }
+.hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 80%, var(--black) 100%);
+}
+.hero-center {
+  position:relative; z-index:2;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding: 0 24px;
+}
+.hero-logo-big {
+  width: min(520px, 78vw);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 60px rgba(200,255,0,0.25));
+  animation: logoPulse 4s ease-in-out infinite;
+}
+@keyframes logoPulse {
+  0%,100% { filter: drop-shadow(0 0 40px rgba(200,255,0,0.2)); }
+  50%      { filter: drop-shadow(0 0 80px rgba(200,255,0,0.45)); }
+}
+.hero-tagline {
+  margin-top:28px;
+  font-size: clamp(11px, 1.4vw, 14px);
+  font-weight:700; letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+}
+.hero-cta {
+  margin-top:32px;
+  display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+}
+.btn-primary {
+  display:inline-block; background:var(--accent); color:var(--black);
+  font-size:12px; font-weight:800; letter-spacing:0.12em;
+  text-transform:uppercase; padding:14px 32px; text-decoration:none;
+  transition:opacity 0.2s;
+}
+.btn-primary:hover { opacity:0.8; }
+.btn-outline {
+  display:inline-block; border:2px solid rgba(255,255,255,0.3);
+  color:var(--white); font-size:12px; font-weight:800;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:14px 32px; text-decoration:none;
+  transition:border-color 0.2s,color 0.2s;
+}
+.btn-outline:hover { border-color:var(--accent); color:var(--accent); }
 
-  /* Custom cursor */
-  #cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 8px; height: 8px;
-    background: var(--white);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-  }
-  #cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
-  }
-  body:hover #cursor-ring { border-color: var(--accent); }
+/* ══════════════════════════════════════════
+   CAROUSEL
+══════════════════════════════════════════ */
+.carousel-section {
+  background:var(--black);
+  padding:0;
+  overflow:hidden;
+}
+.carousel-track-wrap {
+  overflow:hidden;
+  position:relative;
+}
+/* fade edges */
+.carousel-track-wrap::before,
+.carousel-track-wrap::after {
+  content:'';
+  position:absolute; top:0; bottom:0; width:120px; z-index:2;
+  pointer-events:none;
+}
+.carousel-track-wrap::before { left:0; background:linear-gradient(to right, var(--black), transparent); }
+.carousel-track-wrap::after  { right:0; background:linear-gradient(to left, var(--black), transparent); }
 
-  /* Nav */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 48px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
-  }
-  .nav-logo {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s, color 0.2s;
-  }
-  .nav-links a:hover { opacity: 1; color: var(--accent); }
+.carousel-track {
+  display:flex; gap:6px;
+  width:max-content;
+  padding:6px 0;
+}
+.carousel-track.row1 { animation: scrollLeft 90s linear infinite; }
+.carousel-track.row2 { animation: scrollRight 90s linear infinite; }
 
-  /* ===================== HERO ===================== */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-  }
+@keyframes scrollLeft  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes scrollRight { from { transform:translateX(-50%); } to { transform:translateX(0); } }
 
-  .hero-left {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 56px 80px 56px;
-    background: var(--black);
-  }
+.carousel-track-wrap:hover .carousel-track { animation-play-state:paused; }
 
-  .hero-logo {
-    margin-bottom: 40px;
-  }
-  .hero-logo img {
-    height: 80px;
-    width: auto;
-    object-fit: contain;
-  }
+.ep-card {
+  position:relative;
+  flex-shrink:0;
+  width:200px; height:126px;
+  overflow:hidden;
+  display:block;
+  text-decoration:none;
+}
+.ep-card img {
+  width:100%; height:100%; object-fit:cover;
+  display:block;
+  transition:transform 0.4s ease, filter 0.3s ease;
+  filter:brightness(0.8) grayscale(15%);
+}
+.ep-card:hover img {
+  transform:scale(1.08);
+  filter:brightness(1) grayscale(0%);
+}
+.ep-card-overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0);
+  display:flex; align-items:center; justify-content:center;
+  transition:background 0.3s;
+}
+.ep-card:hover .ep-card-overlay { background:rgba(0,0,0,0.3); }
+.ep-card-overlay svg { opacity:0; transform:scale(0.7); transition:opacity 0.3s,transform 0.3s; }
+.ep-card:hover .ep-card-overlay svg { opacity:1; transform:scale(1); }
 
-  .hero-heading {
-    font-size: clamp(32px, 3.8vw, 56px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-  }
-  .hero-heading .accent { color: var(--accent); }
-  .hero-heading .white { color: var(--white); }
+/* ══════════════════════════════════════════
+   SUBSCRIBE
+══════════════════════════════════════════ */
+.section-subscribe {
+  background:var(--accent);
+  padding:80px 56px;
+  text-align:center;
+}
+.subscribe-title {
+  font-size:clamp(22px,3vw,42px); font-weight:900;
+  text-transform:uppercase; letter-spacing:-0.01em;
+  color:var(--black); margin-bottom:10px; line-height:1.1;
+}
+.subscribe-sub {
+  font-size:13px; font-weight:600;
+  color:rgba(0,0,0,0.55); margin-bottom:48px;
+  letter-spacing:0.08em; text-transform:uppercase;
+}
+.platform-cards {
+  display:flex; justify-content:center; gap:20px; flex-wrap:wrap;
+}
+.platform-card {
+  background:var(--white);
+  display:flex; flex-direction:column; align-items:center;
+  gap:12px; padding:28px 36px; min-width:150px;
+  text-decoration:none;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.platform-card:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(0,0,0,0.18); }
+.platform-card span {
+  font-size:11px; font-weight:800; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--black);
+}
 
-  .hero-desc {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.65);
-    max-width: 480px;
-    margin-bottom: 40px;
-  }
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+.section-about {
+  background:var(--black);
+  padding:100px 56px;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:center;
+}
+.about-photo { position:relative; overflow:hidden; }
+.about-photo img {
+  width:100%; height:560px; object-fit:cover;
+  object-position:center top; display:block;
+  filter:brightness(0.92);
+}
+.about-photo::after {
+  content:''; position:absolute; bottom:0; left:0; right:0;
+  height:28%; background:linear-gradient(to top, var(--black), transparent);
+}
+.about-label {
+  font-size:11px; font-weight:700; letter-spacing:0.25em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:16px;
+}
+.about-name {
+  font-size:clamp(40px,5.5vw,76px); font-weight:900;
+  text-transform:uppercase; letter-spacing:-0.02em;
+  line-height:0.92; color:var(--white); margin-bottom:28px;
+}
+.about-bio {
+  font-size:15px; font-weight:500; line-height:1.8;
+  color:rgba(255,255,255,0.58); margin-bottom:40px;
+}
+.about-stats {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  border-top:1px solid rgba(255,255,255,0.1); padding-top:32px;
+}
+.stat-num { font-size:36px; font-weight:900; color:var(--accent); line-height:1; margin-bottom:6px; }
+.stat-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
 
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--black);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-outline {
-    display: inline-block;
-    border: 2px solid rgba(255,255,255,0.3);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.07);
+  padding:44px 56px;
+  display:flex; align-items:center;
+  justify-content:space-between; flex-wrap:wrap; gap:24px;
+}
+.footer-logo img { height:28px; width:auto; object-fit:contain; opacity:0.7; }
+.footer-links { display:flex; gap:28px; list-style:none; }
+.footer-links a {
+  font-size:11px; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35);
+  text-decoration:none; transition:color 0.2s;
+}
+.footer-links a:hover { color:var(--accent); }
+.footer-copy { font-size:11px; font-weight:600; color:rgba(255,255,255,0.2); }
 
-  .hero-right {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .hero-right::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    left: -1px;
-    background: linear-gradient(to right, var(--black) 0%, transparent 30%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  .hero-img {
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(20%) brightness(0.75);
-    transition: filter 0.4s ease, transform 0.6s ease;
-  }
-  .hero-img:hover img {
-    filter: grayscale(0%) brightness(0.9);
-    transform: scale(1.05);
-  }
-
-  /* ===================== POPULAR ===================== */
-  .section-popular {
-    padding: 100px 56px;
-    background: var(--black);
-  }
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: clamp(28px, 3.5vw, 48px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin-bottom: 64px;
-    line-height: 1.05;
-  }
-
-  .episodes-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .episode-item {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 40px;
-    align-items: center;
-    padding: 40px 0;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .episode-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .episode-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
-
-  .ep-thumb {
-    position: relative;
-    aspect-ratio: 16/10;
-    overflow: hidden;
-  }
-  .ep-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.85);
-    transition: filter 0.3s ease, transform 0.4s ease;
-  }
-  .episode-item:hover .ep-thumb img {
-    filter: brightness(1);
-    transform: scale(1.03);
-  }
-  .ep-play {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.2);
-    transition: background 0.3s;
-  }
-  .ep-play svg {
-    width: 56px;
-    height: 56px;
-    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.5));
-    transition: transform 0.3s;
-  }
-  .episode-item:hover .ep-play { background: rgba(0,0,0,0.0); }
-  .episode-item:hover .ep-play svg { transform: scale(1.1); }
-
-  .ep-info { padding: 4px 0; }
-  .ep-number {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-  .ep-title {
-    font-size: clamp(20px, 2.2vw, 30px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 1.05;
-    color: var(--white);
-    margin-bottom: 14px;
-  }
-  .ep-desc {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 20px;
-    max-width: 580px;
-  }
-  .ep-listen {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    margin-bottom: 20px;
-    transition: opacity 0.2s;
-  }
-  .ep-listen:hover { opacity: 0.7; }
-  .ep-platforms {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .platform-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border: 1px solid rgba(255,255,255,0.15);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--white);
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .platform-badge:hover { border-color: var(--accent); background: rgba(200,255,0,0.05); }
-  .platform-badge svg { flex-shrink: 0; }
-
-  /* ===================== SUBSCRIBE ===================== */
-  .section-subscribe {
-    background: var(--accent);
-    padding: 80px 56px;
-    text-align: center;
-  }
-  .subscribe-title {
-    font-size: clamp(22px, 3vw, 40px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: var(--black);
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
-  .subscribe-sub {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(0,0,0,0.6);
-    margin-bottom: 48px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .platform-cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .platform-card {
-    background: var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 28px 32px;
-    min-width: 160px;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .platform-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-  }
-  .platform-card svg { flex-shrink: 0; }
-  .platform-card span {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--black);
-  }
-
-  /* ===================== ABOUT ===================== */
-  .section-about {
-    background: var(--black);
-    padding: 100px 56px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .about-photo {
-    position: relative;
-    overflow: hidden;
-  }
-  .about-photo img {
-    width: 100%;
-    height: 560px;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    filter: brightness(0.9);
-  }
-  .about-photo::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 30%;
-    background: linear-gradient(to top, var(--black), transparent);
-  }
-  .about-content { padding: 20px 0; }
-  .about-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-  .about-name {
-    font-size: clamp(36px, 5vw, 72px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
-    color: var(--white);
-    margin-bottom: 28px;
-  }
-  .about-bio {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 40px;
-  }
-  .about-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 32px;
-  }
-  .stat-item {}
-  .stat-num {
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-  }
-
-  /* ===================== FOOTER ===================== */
-  footer {
-    background: var(--black);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 48px 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .footer-logo {
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .footer-logo span { color: var(--accent); }
-  .footer-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
-  .footer-links a {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-  .footer-copy {
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.05em;
-  }
-
-  /* Scroll reveal base */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Scroll reveal */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease,transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
 </style>
 </head>
 <body>
@@ -535,7 +294,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Beyond the Code</a>
+  <a href="#" class="nav-logo"><img src="assets/btc logo.png" alt="Beyond the Code"></a>
   <ul class="nav-links">
     <li><a href="#episodes">Episodes</a></li>
     <li><a href="#subscribe">Subscribe</a></li>
@@ -545,181 +304,112 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-logo">
-      <img src="assets/btc logo.png" alt="Beyond the Code">
-    </div>
-    <h1 class="hero-heading">
-      <span class="accent">BEYOND THE CODE</span>
-      <span class="white"> IS AN UNFILTERED JOURNEY INTO THE LEGAL AND REGULATORY WORLD OF CRYPTO, WEB3 AND EMERGING TECH.</span>
-    </h1>
-    <p class="hero-desc">
-      The podcast where law meets blockchain. Every episode, host Yitzy Hammer pulls back the curtain on the cases, regulations, and power plays reshaping the future of digital assets — with the lawyers, founders, and regulators who lived it.
-    </p>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-center">
+    <img class="hero-logo-big" src="assets/btc logo.png" alt="Beyond the Code">
+    <p class="hero-tagline">The unfiltered legal &amp; regulatory world of crypto, web3 &amp; emerging tech</p>
     <div class="hero-cta">
-      <a href="#episodes" class="btn-primary">Explore Episodes</a>
+      <a href="#episodes" class="btn-primary">All Episodes</a>
       <a href="#subscribe" class="btn-outline">Subscribe Free</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-img"><img src="assets/E86_ Ran Neuner.png" alt="Ran Neuner"></div>
-    <div class="hero-img"><img src="assets/E52_ Tigran Gambaryan.png" alt="Tigran Gambaryan"></div>
-    <div class="hero-img"><img src="assets/E89_ Yoni Assia.png" alt="Yoni Assia"></div>
-    <div class="hero-img"><img src="assets/E71_ Charlie Shrem.png" alt="Charlie Shrem"></div>
-    <div class="hero-img"><img src="assets/E36 JP Thor.png" alt="JP Thor"></div>
-    <div class="hero-img"><img src="assets/E26 Jason Gottlieb.png" alt="Jason Gottlieb"></div>
-  </div>
 </section>
 
-<!-- MOST POPULAR EPISODES -->
-<section class="section-popular" id="episodes">
-  <p class="section-label reveal">The Podcast</p>
-  <h2 class="section-title reveal">Most Popular Episodes</h2>
+<!-- EPISODE CAROUSEL -->
+<section class="carousel-section" id="episodes">
 
-  <div class="episodes-list">
-
-    <!-- Ep 86 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E86_ Ran Neuner.png" alt="Ran Neuner">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="28" fill="#C8FF00"/>
-            <polygon points="22,16 42,28 22,40" fill="#000"/>
-          </svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 86</p>
-        <h3 class="ep-title">Ran Neuner — Crypto Man Ran on Building Crypto Banter</h3>
-        <p class="ep-desc">From South African media mogul to crypto's loudest voice. Ran Neuner built Crypto Banter into a global empire and he pulls no punches on what it really takes to survive — and thrive — in the wildest market on earth.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>
-            Apple Podcasts
-          </a>
-          <a href="#" class="platform-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            Spotify
-          </a>
-          <a href="#" class="platform-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-            YouTube
-          </a>
-        </div>
-      </div>
+  <!-- Row 1: scrolls left -->
+  <div class="carousel-track-wrap">
+    <div class="carousel-track row1" id="row1">
+      <a href="#" class="ep-card"><img src="assets/E86_ Ran Neuner.jpg" alt="Ran Neuner"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E52_ Tigran Gambaryan.jpg" alt="Tigran Gambaryan"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E89_ Yoni Assia.jpg" alt="Yoni Assia"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E71_ Charlie Shrem.jpg" alt="Charlie Shrem"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E36 JP Thor.jpg" alt="JP Thor"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E26 Jason Gottlieb.jpg" alt="Jason Gottlieb"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E98_ Jonathan Benton.jpg" alt="Jonathan Benton"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E95_ Delphine Forma.jpg" alt="Delphine Forma"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E94_ Itai Kanot.jpg" alt="Itai Kanot"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E93_ Avishay Yanai.jpg" alt="Avishay Yanai"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E92_ Scott Thiel.jpg" alt="Scott Thiel"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E91_ Erin West.jpg" alt="Erin West"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E90_ Stephen Sargeant.jpg" alt="Stephen Sargeant"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E88_ Daniel Lo.jpg" alt="Daniel Lo"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E87_ Philipp Tsagolov.jpg" alt="Philipp Tsagolov"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E85_ Anna George.jpg" alt="Anna George"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E84_ Alex Scheer.jpg" alt="Alex Scheer"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E83_ Danielle Tichner.jpg" alt="Danielle Tichner"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E82_ Paul R. Brody.jpg" alt="Paul R Brody"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E81_ Yehuda Lindell.jpg" alt="Yehuda Lindell"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E80_ Steve Epstein.jpg" alt="Steve Epstein"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E79_ Jake Adelstein.jpg" alt="Jake Adelstein"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E78_ Jake Chervinsky.jpg" alt="Jake Chervinsky"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E77_ Ido Bar-On.jpg" alt="Ido Bar-On"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E76_ Samuel Cardillo.jpg" alt="Samuel Cardillo"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E75_ Gabriel Shapiro.jpg" alt="Gabriel Shapiro"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E74_ Aaron Payas.jpg" alt="Aaron Payas"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E73_ Justin Wales (Act II).jpg" alt="Justin Wales"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <!-- duplicate for seamless loop -->
+      <a href="#" class="ep-card"><img src="assets/E86_ Ran Neuner.jpg" alt="Ran Neuner"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E52_ Tigran Gambaryan.jpg" alt="Tigran Gambaryan"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E89_ Yoni Assia.jpg" alt="Yoni Assia"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E71_ Charlie Shrem.jpg" alt="Charlie Shrem"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E36 JP Thor.jpg" alt="JP Thor"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E26 Jason Gottlieb.jpg" alt="Jason Gottlieb"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E98_ Jonathan Benton.jpg" alt="Jonathan Benton"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E95_ Delphine Forma.jpg" alt="Delphine Forma"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E94_ Itai Kanot.jpg" alt="Itai Kanot"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E93_ Avishay Yanai.jpg" alt="Avishay Yanai"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E92_ Scott Thiel.jpg" alt="Scott Thiel"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E91_ Erin West.jpg" alt="Erin West"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E90_ Stephen Sargeant.jpg" alt="Stephen Sargeant"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E88_ Daniel Lo.jpg" alt="Daniel Lo"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E87_ Philipp Tsagolov.jpg" alt="Philipp Tsagolov"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
     </div>
-
-    <!-- Ep 52 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E52_ Tigran Gambaryan.png" alt="Tigran Gambaryan">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="28" fill="#C8FF00"/>
-            <polygon points="22,16 42,28 22,40" fill="#000"/>
-          </svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 52</p>
-        <h3 class="ep-title">Tigran Gambaryan — The Man Who Broke Bitcoin Criminals</h3>
-        <p class="ep-desc">The IRS agent who took down the biggest names in crypto crime. Tigran Gambaryan tracked billions across the blockchain and lived to tell the story — including what it was like inside a Nigerian detention cell.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>Apple Podcasts</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ep 89 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E89_ Yoni Assia.png" alt="Yoni Assia">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#C8FF00"/><polygon points="22,16 42,28 22,40" fill="#000"/></svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 89</p>
-        <h3 class="ep-title">Yoni Assia — eToro Founder, 100 Million Users</h3>
-        <p class="ep-desc">The visionary who built one of the world's largest social investing platforms. Yoni Assia on creating eToro, navigating global regulation, and why he believes crypto will reshape the global financial system.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>Apple Podcasts</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ep 71 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E71_ Charlie Shrem.png" alt="Charlie Shrem">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#C8FF00"/><polygon points="22,16 42,28 22,40" fill="#000"/></svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 71</p>
-        <h3 class="ep-title">Charlie Shrem — Bitcoin OG, Raw Journey Through Bitcoin's Birth</h3>
-        <p class="ep-desc">One of Bitcoin's earliest adopters and advocates. Charlie Shrem tells the unfiltered story of building BitInstant, going to prison, and coming out the other side still a believer — more than ever.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>Apple Podcasts</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ep 36 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E36 JP Thor.png" alt="JP Thor">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#C8FF00"/><polygon points="22,16 42,28 22,40" fill="#000"/></svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 36</p>
-        <h3 class="ep-title">JP Thor — From Fighter Pilot to ThorChain Founder</h3>
-        <p class="ep-desc">The anonymous force behind one of DeFi's most resilient protocols. JP Thor went from military jets to decentralised finance — and built THORChain under a pseudonym that became legend in the crypto world.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>Apple Podcasts</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ep 26 -->
-    <div class="episode-item">
-      <div class="ep-thumb">
-        <img src="assets/E26 Jason Gottlieb.png" alt="Jason Gottlieb">
-        <div class="ep-play">
-          <svg viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#C8FF00"/><polygon points="22,16 42,28 22,40" fill="#000"/></svg>
-        </div>
-      </div>
-      <div class="ep-info">
-        <p class="ep-number">Episode 26</p>
-        <h3 class="ep-title">Jason Gottlieb — Inside the Crypto Courtroom</h3>
-        <p class="ep-desc">The defense attorney who has been in the trenches of the most high-profile crypto cases. Jason Gottlieb breaks down the legal battles defining the industry — and what the courtroom really looks like when crypto is on trial.</p>
-        <a href="#" class="ep-listen">Listen Now →</a>
-        <div class="ep-platforms">
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>Apple Podcasts</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a>
-          <a href="#" class="platform-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-
   </div>
+
+  <!-- Row 2: scrolls right -->
+  <div class="carousel-track-wrap">
+    <div class="carousel-track row2" id="row2">
+      <a href="#" class="ep-card"><img src="assets/E72_ Joni Pirovich.jpg" alt="Joni Pirovich"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E70_ Vivek Jayaram.jpg" alt="Vivek Jayaram"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E69_ Dr. Shmuel Abramzon.jpg" alt="Dr Shmuel Abramzon"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E53_ Carlo D'Angelo.jpg" alt="Carlo D'Angelo"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E51_ Eran Lahav.jpg" alt="Eran Lahav"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E50_ Amanda Wick.jpg" alt="Amanda Wick"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E49_ bentzi rabi.jpg" alt="Bentzi Rabi"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E48_ Dr. Jimmie Lenz.jpg" alt="Dr Jimmie Lenz"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E47_ Nadav Ellinson.jpg" alt="Nadav Ellinson"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E44_ Eylon Aviv.jpg" alt="Eylon Aviv"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E43_ Hester Peirce.jpg" alt="Hester Peirce"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E42_ Noah Perlman.jpg" alt="Noah Perlman"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E41_ ouriel ohayon.jpg" alt="Ouriel Ohayon"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E40_ prof. edward lee.jpg" alt="Prof Edward Lee"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E39_ Ofir Eliasi.jpg" alt="Ofir Eliasi"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E38_ Nick Furneaux.jpg" alt="Nick Furneaux"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E37 Mati Greenspan.jpg" alt="Mati Greenspan"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E35 Jake Brukhman.jpg" alt="Jake Brukhman"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E34 Amanda Tuminelli.jpg" alt="Amanda Tuminelli"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E33 Jason Schwartz.jpg" alt="Jason Schwartz"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E32 Joseph Page.jpg" alt="Joseph Page"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E31 Moish Peltz.jpg" alt="Moish Peltz"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E30 Flavia Naves.jpg" alt="Flavia Naves"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E28 Erin West.jpg" alt="Erin West"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E25 Alex Davis.jpg" alt="Alex Davis"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E26 Jason Gottlieb.jpg" alt="Jason Gottlieb"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <!-- duplicate for seamless loop -->
+      <a href="#" class="ep-card"><img src="assets/E72_ Joni Pirovich.jpg" alt="Joni Pirovich"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E70_ Vivek Jayaram.jpg" alt="Vivek Jayaram"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E69_ Dr. Shmuel Abramzon.jpg" alt="Dr Shmuel Abramzon"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E53_ Carlo D'Angelo.jpg" alt="Carlo D'Angelo"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E51_ Eran Lahav.jpg" alt="Eran Lahav"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E50_ Amanda Wick.jpg" alt="Amanda Wick"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E49_ bentzi rabi.jpg" alt="Bentzi Rabi"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+      <a href="#" class="ep-card"><img src="assets/E48_ Dr. Jimmie Lenz.jpg" alt="Dr Jimmie Lenz"><div class="ep-card-overlay"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg></div></a>
+    </div>
+  </div>
+
 </section>
 
 <!-- SUBSCRIBE -->
@@ -728,31 +418,19 @@
   <p class="subscribe-sub">New episodes every week</p>
   <div class="platform-cards">
     <a href="#" class="platform-card">
-      <!-- Apple Podcasts -->
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#9B59B6">
-        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/>
-      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>
       <span>Apple Podcasts</span>
     </a>
     <a href="#" class="platform-card">
-      <!-- Spotify -->
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#1DB954">
-        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       <span>Spotify</span>
     </a>
     <a href="#" class="platform-card">
-      <!-- YouTube -->
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#FF0000">
-        <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
       <span>YouTube</span>
     </a>
     <a href="#" class="platform-card">
-      <!-- X / Twitter -->
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#000">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.638 5.903-5.638zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.638 5.903-5.638zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       <span>X / Twitter</span>
     </a>
   </div>
@@ -763,7 +441,7 @@
   <div class="about-photo reveal">
     <img src="assets/host.jpg" alt="Yitzy Hammer">
   </div>
-  <div class="about-content reveal">
+  <div class="reveal" style="padding:20px 0">
     <p class="about-label">Your Host</p>
     <h2 class="about-name">Yitzy<br>Hammer</h2>
     <p class="about-bio">
@@ -771,25 +449,16 @@
       Beyond the Code is his platform to go deeper — past the press releases and into the real conversations with the people shaping the legal, regulatory, and technological future of digital assets.
     </p>
     <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-num">100+</div>
-        <div class="stat-label">Episodes</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">3.5+</div>
-        <div class="stat-label">Years On Air</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">7+</div>
-        <div class="stat-label">Years Crypto Law</div>
-      </div>
+      <div><div class="stat-num">100+</div><div class="stat-label">Episodes</div></div>
+      <div><div class="stat-num">3.5+</div><div class="stat-label">Years On Air</div></div>
+      <div><div class="stat-num">7+</div><div class="stat-label">Years Crypto Law</div></div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">Beyond <span>the Code</span></a>
+  <a href="#" class="footer-logo"><img src="assets/btc logo.png" alt="Beyond the Code"></a>
   <ul class="footer-links">
     <li><a href="#episodes">Episodes</a></li>
     <li><a href="#subscribe">Subscribe</a></li>
@@ -802,36 +471,23 @@
 </footer>
 
 <script>
-  // Custom cursor
-  const dot = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animCursor() {
-    dot.style.left = mx + 'px';
-    dot.style.top = my + 'px';
-    rx += (mx - rx) * 0.15;
-    ry += (my - ry) * 0.15;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animCursor);
-  }
-  animCursor();
+// Cursor
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function anim(){
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+  rx+=(mx-rx)*0.14; ry+=(my-ry)*0.14;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal, .episode-item');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 80 * (entry.target.dataset.delay || 0));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach((el, i) => {
-    el.dataset.delay = i % 4;
-    observer.observe(el);
-  });
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
