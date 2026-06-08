@@ -179,29 +179,33 @@ const id = parseInt(params.get('id'));
 const ep = EPISODES.find(e => e.id === id);
 
 if (ep) {
-  document.title = `Ep ${ep.id}: ${ep.guest} — Beyond the Code`;
+  document.title = `${ep.guest} — Beyond the Code`;
   document.getElementById('hero-img').src = ep.thumb;
   document.getElementById('hero-img').alt = ep.guest;
-  document.getElementById('ep-num').textContent = `Episode ${ep.id}`;
-  document.getElementById('ep-title').textContent = `${ep.guest} — ${ep.title}`;
+  const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special $1') : `Episode ${ep.id}`;
+  document.getElementById('ep-num').textContent = (ep.date ? ep.date + ' · ' : '') + label;
+  document.getElementById('ep-title').textContent = ep.title || ep.guest;
   document.getElementById('ep-desc').textContent = ep.desc;
   document.getElementById('guest-name').textContent = ep.guest;
-  document.getElementById('guest-bio').textContent = ep.bio;
-  ['apple','spotify','youtube'].forEach(p => {
-    document.getElementById('btn-'+p).href = ep[p];
-    document.getElementById('share-'+p).href = ep[p];
-  });
+  document.getElementById('guest-bio').textContent = '';
+  document.getElementById('btn-spotify').href = ep.spotify !== '#' ? ep.spotify : '#';
+  document.getElementById('btn-apple').href = ep.apple !== '#' ? ep.apple : '#';
+  document.getElementById('btn-youtube').href = ep.youtube !== '#' ? ep.youtube : '#';
+  document.getElementById('share-spotify').href = ep.spotify !== '#' ? ep.spotify : '#';
+  document.getElementById('share-apple').href = ep.apple !== '#' ? ep.apple : '#';
+  document.getElementById('share-youtube').href = ep.youtube !== '#' ? ep.youtube : '#';
 
   // Related: 3 random other episodes
   const others = EPISODES.filter(e => e.id !== id);
   const related = others.sort(() => Math.random() - 0.5).slice(0, 3);
   const grid = document.getElementById('related-grid');
   related.forEach(r => {
+    const rl = r.epLabel ? r.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'CS $1') : `Ep ${r.id}`;
     grid.innerHTML += `
       <a href="episode.html?id=${r.id}" class="related-card">
         <div class="related-card-thumb"><img src="${r.thumb}" alt="${r.guest}" loading="lazy"></div>
-        <p class="related-ep-num">Episode ${r.id}</p>
-        <p class="related-ep-title">${r.guest} — ${r.title}</p>
+        <p class="related-ep-num">${rl}</p>
+        <p class="related-ep-title">${r.guest} — ${r.title.substring(0,60)}</p>
       </a>`;
   });
 } else {
