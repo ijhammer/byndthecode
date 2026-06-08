@@ -324,18 +324,46 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 
 // ── SPONSORS ──
 const SPONSORS = [
-  { name: "Sponsor Slot", tagline: "Featured Partner", logo: "", url: "#" },
-  { name: "Sponsor Slot", tagline: "Featured Partner", logo: "", url: "#" },
-  { name: "Sponsor Slot", tagline: "Featured Partner", logo: "", url: "#" },
-  { name: "Sponsor Slot", tagline: "Featured Partner", logo: "", url: "#" },
+  {
+    name: "First Read",
+    tagline: "Your daily briefing on crypto, law & regulation",
+    promo: "BYNDTHECODE10",
+    promoDesc: "10% off",
+    url: "https://first-read.com/signup?ref=BEYOND2026",
+  },
+  {
+    name: "Nominis",
+    tagline: "Blockchain analytics & compliance",
+    promo: "DLTLAW5",
+    promoDesc: "5% off",
+    url: "https://www.nominis.io/",
+  },
+  {
+    name: "ZenGo",
+    tagline: "The keyless crypto wallet",
+    promo: "",
+    promoDesc: "",
+    url: "#",
+  },
+  {
+    name: "Your Brand Here",
+    tagline: "Reach the crypto legal community",
+    promo: "",
+    promoDesc: "",
+    url: "mailto:yitzy@dltlaw.co.il",
+  },
 ];
 const sg = document.getElementById('sponsors-grid');
 if (sg) SPONSORS.forEach(s => {
-  sg.innerHTML += `<a href="${s.url}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#111;border:1px solid rgba(255,255,255,0.08);padding:32px 20px;text-decoration:none;min-height:120px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.borderColor='#C8FF00';this.style.background='#141414'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#111'">
-    ${s.logo ? `<img src="${s.logo}" alt="${s.name}" style="height:40px;width:auto;object-fit:contain;filter:brightness(0.8) grayscale(0.3);">` : `<div style="font-size:24px;color:rgba(255,255,255,0.15);">+</div>`}
-    <span style="font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);">${s.name}</span>
-    <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.2);">${s.tagline}</span>
-  </a>`;
+  sg.innerHTML += `
+    <a href="${s.url}" target="_blank" rel="noopener"
+      style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#111;border:1px solid rgba(255,255,255,0.08);padding:32px 20px;text-decoration:none;min-height:140px;transition:border-color 0.2s,background 0.2s;text-align:center;"
+      onmouseover="this.style.borderColor='#C8FF00';this.style.background='#141414'"
+      onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#111'">
+      <span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>
+      <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);line-height:1.5;">${s.tagline}</span>
+      ${s.promo ? `<span style="margin-top:6px;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);padding:5px 12px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C8FF00;">${s.promoDesc} · ${s.promo}</span>` : ''}
+    </a>`;
 });
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
