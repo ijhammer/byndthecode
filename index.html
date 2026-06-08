@@ -161,19 +161,21 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   <div class="hero-overlay"></div>
   <div class="hero-center">
     <p class="hero-tagline">The unfiltered legal &amp; regulatory world of crypto, web3 &amp; emerging tech</p>
-    <div class="hero-cta">
-      <a href="episodes.html" class="btn-primary">All Episodes</a>
-      <a href="#subscribe" class="btn-outline">Subscribe Free</a>
-    </div>
   </div>
 </section>
 
+<!-- CTA BAND -->
+<div style="background:var(--black);padding:56px 48px 48px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+  <a href="episodes.html" class="btn-primary">All Episodes</a>
+  <a href="#subscribe" class="btn-outline">Subscribe Free</a>
+</div>
+
 <!-- CAROUSEL — populated by JS from EPISODES array -->
-<section class="carousel-section" id="carousel-section">
+<section class="carousel-section" id="carousel-section" style="padding-bottom:56px;">
   <div class="carousel-track-wrap">
     <div class="carousel-track row1" id="carousel-row1"></div>
   </div>
-  <div class="carousel-track-wrap">
+  <div class="carousel-track-wrap" style="margin-top:6px;">
     <div class="carousel-track row2" id="carousel-row2"></div>
   </div>
 </section>
