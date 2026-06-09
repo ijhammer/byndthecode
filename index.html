@@ -107,7 +107,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 .platform-badge:hover { border-color:var(--accent); background:rgba(200,255,0,0.05); }
 
 /* ── SUBSCRIBE ── */
-.section-subscribe { background:var(--accent); padding:80px 56px; text-align:center; }
+.section-subscribe { background:#fff; padding:80px 56px; text-align:center; }
 .subscribe-title { font-size:clamp(22px,3vw,42px); font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; color:var(--black); margin-bottom:10px; line-height:1.1; }
 .subscribe-sub { font-size:13px; font-weight:600; color:rgba(0,0,0,0.55); margin-bottom:48px; letter-spacing:0.08em; text-transform:uppercase; }
 .platform-cards { display:flex; justify-content:center; gap:36px; flex-wrap:wrap; }
@@ -399,6 +399,7 @@ const SPONSORS = [
     name: "First Read",
     tagline: "Your daily briefing on crypto, law & regulation",
     logo: "https://first-read.com/logo.svg",
+    colorLogo: true,
     promo: "BYNDTHECODE10",
     promoDesc: "10% off",
     url: "https://first-read.com/signup?ref=BEYOND2026",
@@ -436,7 +437,7 @@ if (grid) {
         onmouseout="this.style.borderColor='rgba(255,255,255,0.10)';this.style.background='#111'">
         <span style="position:absolute;top:10px;left:12px;font-size:8px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;background:${s.badgeColor};color:${s.badgeText};padding:2px 7px;">${s.badge}</span>
         <div style="height:52px;display:flex;align-items:center;justify-content:center;">
-          ${s.logo ? `<img src="${s.logo}" alt="${s.name}" style="height:30px;width:auto;max-width:150px;object-fit:contain;filter:brightness(0) invert(1);">` : `<span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>`}
+          ${s.logo ? `<img src="${s.logo}" alt="${s.name}" style="height:30px;width:auto;max-width:150px;object-fit:contain;${s.colorLogo ? '' : 'filter:brightness(0) invert(1);'}">` : `<span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>`}
         </div>
         <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);line-height:1.5;">${s.tagline}</span>
         ${s.promo ? `<span style="margin-top:2px;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C8FF00;">${s.promoDesc} · ${s.promo}</span>` : '<span style="display:block;height:26px;"></span>'}
