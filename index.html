@@ -378,8 +378,9 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   const APPLE_SHOW = 'https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418';
   const SPOTIFY_SHOW = 'https://open.spotify.com/show/7x77TlOnI7BSz4fnIkhvVs';
   const YT_CHANNEL = 'https://www.youtube.com/@byndthecode';
+  const fullEps = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
   POPULAR_GUESTS.forEach(name => {
-    const ep = EPISODES.find(e => e.guest === name || e.guest.includes(name));
+    const ep = fullEps.find(e => e.guest === name || e.guest.includes(name));
     if (!ep) return;
     const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special') : ep.date;
     const appleHref = (ep.apple && ep.apple !== '#') ? ep.apple : APPLE_SHOW;
