@@ -329,8 +329,8 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 // ── CAROUSEL ──
 (function(){
   const SVG_PLAY = `<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg>`;
-  const ONERR = `onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"`;
-  const CARD = ep => `<a href="episode.html?id=${ep.id}" class="ep-card"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${ONERR}><div class="ep-card-overlay">${SVG_PLAY}</div></a>`;
+  const THUMB_FIX = `onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"`;
+  const CARD = ep => `<a href="episode.html?id=${ep.id}" class="ep-card"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${THUMB_FIX}><div class="ep-card-overlay">${SVG_PLAY}</div></a>`;
   // Only show full episodes (standard labels like E1, CS1, BB25, etc.) — excludes Shorts/clips
   const fullEps = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
   const seenThumbs = new Set();
@@ -352,13 +352,13 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   const grid = document.getElementById('latest-grid');
   if (!grid) return;
   const SVG_PLAY = `<svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#C8FF00"/><polygon points="19,13 38,24 19,35" fill="#000"/></svg>`;
-  const ONERR = `onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"`;
+  const THUMB_FIX = `onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"`;
   const latestFull = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
   latestFull.slice(0, 4).forEach(ep => {
     const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special') : ep.date;
     grid.innerHTML += `
       <a href="episode.html?id=${ep.id}" class="latest-card">
-        <div class="latest-card-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${ONERR}><div class="latest-play">${SVG_PLAY}</div></div>
+        <div class="latest-card-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${THUMB_FIX}><div class="latest-play">${SVG_PLAY}</div></div>
         <p class="latest-card-ep">${label}</p>
         <h3 class="latest-card-title">${ep.guest} — ${ep.title.substring(0,55)}</h3>
       </a>`;
@@ -387,7 +387,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
     const ytHref = (ep.youtube && ep.youtube !== '#') ? ep.youtube : YT_CHANNEL;
     list.innerHTML += `
       <div class="episode-item">
-        <a href="episode.html?id=${ep.id}" class="ep-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"><div class="ep-play">${SVG}</div></a>
+        <a href="episode.html?id=${ep.id}" class="ep-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"><div class="ep-play">${SVG}</div></a>
         <div class="ep-info">
           <p class="ep-number">${label}</p>
           <h3 class="ep-title">${ep.guest} — ${ep.title.substring(0,70)}</h3>
