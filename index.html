@@ -427,13 +427,16 @@ if (grid) {
   allCards.forEach(s => {
     grid.innerHTML += `
       <a href="${s.url}" target="_blank" rel="noopener"
-        style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#161616;border:1px solid rgba(255,255,255,0.14);padding:28px 20px 24px;text-decoration:none;min-height:140px;transition:border-color 0.2s,background 0.2s;text-align:center;position:relative;"
+        style="display:flex;flex-direction:column;align-items:center;gap:14px;background:#111;border:1px solid rgba(255,255,255,0.10);padding:36px 24px 28px;text-decoration:none;text-align:center;position:relative;transition:border-color 0.2s,background 0.2s;"
         onmouseover="this.style.borderColor='#C8FF00';this.style.background='#141414'"
-        onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#111'">
+        onmouseout="this.style.borderColor='rgba(255,255,255,0.10)';this.style.background='#111'">
         <span style="position:absolute;top:10px;left:12px;font-size:8px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;background:${s.badgeColor};color:${s.badgeText};padding:2px 7px;">${s.badge}</span>
-        ${s.logo ? `<div style="background:#fff;padding:8px 16px;border-radius:4px;display:flex;align-items:center;justify-content:center;"><img src="${s.logo}" alt="${s.name}" style="height:32px;width:auto;max-width:140px;object-fit:contain;"></div>` : `<span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>`}
-        <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);line-height:1.5;">${s.tagline}</span>
-        ${s.promo ? `<span style="margin-top:4px;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C8FF00;">${s.promoDesc} · ${s.promo}</span>` : ''}
+        <div style="height:52px;display:flex;align-items:center;justify-content:center;">
+          ${s.logo ? `<div style="background:#fff;padding:7px 16px;border-radius:4px;display:flex;align-items:center;justify-content:center;"><img src="${s.logo}" alt="${s.name}" style="height:30px;width:auto;max-width:130px;object-fit:contain;"></div>` : ''}
+        </div>
+        <span style="font-size:14px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:#fff;line-height:1;">${s.name}</span>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);line-height:1.5;">${s.tagline}</span>
+        ${s.promo ? `<span style="margin-top:2px;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C8FF00;">${s.promoDesc} · ${s.promo}</span>` : '<span style="display:block;height:22px;"></span>'}
       </a>`;
   });
 }
