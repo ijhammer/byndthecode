@@ -275,13 +275,26 @@ def parse_rss():
 def esc(s):
     return str(s).replace('\\', '\\\\').replace('`', '\\`').replace('${', '\\${')
 
+# ── YOUTUBE OVERRIDES ────────────────────────────────────────────────────────
+def load_yt_overrides():
+    """Load manual YouTube URL overrides from scripts/youtube_overrides.json."""
+    import json
+    try:
+        with open('scripts/youtube_overrides.json') as f:
+            data = json.load(f)
+        # Keys are episode IDs (strings); strip the _comment key
+        return {int(k): v for k, v in data.items() if k != '_comment'}
+    except FileNotFoundError:
+        return {}
+
 # ── MAIN ─────────────────────────────────────────────────────────────────────
 def main():
     print('Beyond the Code — episode updater', file=sys.stderr)
 
-    existing  = load_existing()
-    yt_videos = fetch_youtube_videos()
-    rss_items = parse_rss()
+    existing    = load_existing()
+    yt_videos   = fetch_youtube_videos()
+    yt_override = load_yt_overrides()
+    rss_items   = parse_rss()
 
     episodes = []
     new_count = 0
@@ -315,10 +328,11 @@ def main():
         else:
             thumb = find_thumb(ep_label, item['thumb_url'])
 
-        # YouTube
-        existing_yt = known.get('youtube', '#')
-        if existing_yt and existing_yt != '#':
-            youtube = existing_yt
+        # YouTube — manual override wins, then existing value, then auto-match
+        if seq_id in yt_override:
+            youtube = yt_override[seq_id]
+        elif known.get('youtube', '#') != '#':
+            youtube = known['youtube']
         else:
             youtube = match_youtube(title, guest, yt_videos)
 
