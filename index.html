@@ -331,7 +331,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   const SVG_PLAY = `<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg>`;
   const CARD = ep => `<a href="episode.html?id=${ep.id}" class="ep-card"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy"><div class="ep-card-overlay">${SVG_PLAY}</div></a>`;
   // Use episodes with local thumbnails; deduplicate so each image appears once
-  const local = EPISODES.filter(e => e.thumb.startsWith('assets/'));
+  const local = EPISODES.filter(e => e.thumb.startsWith('assets/') || e.thumb.startsWith('images/'));
   const all = local.length >= 14 ? local : EPISODES;
   const seenThumbs = new Set();
   const deduped = all.filter(ep => { if (seenThumbs.has(ep.thumb)) return false; seenThumbs.add(ep.thumb); return true; });
