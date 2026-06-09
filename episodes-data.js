@@ -6,7 +6,7 @@ const EPISODES = [
     title: `Sam & Sarah (Swivul) — Mariah Carey, a Token Dump, and Building the Travel Platform for Web3 | Consensus Miami 2026`,
     date: `June 08, 2026`,
     desc: `Sam Krichevsky and Sarah Figueroa are married, co-founders, and some of the most fun people I've met in this space. We sat down at Coindesk's Consensus Miami 2026 to talk about their whole journey - from Sarah mining Ethereum in 2017 and founding GeoJam (a social music platform whose biggest investor was Mariah Carey) to watching it collapse after a single exchange dumped over 10% of their token supply in one night.Now they're building Swivul - an all-in-one travel and entertainment booking platform built specifically for the Web3 and crypto industry. One-click checkout, crypto payments, concierge service, and, crucially, tools to actually measure the ROI on your travel and entertainment spend. Travel and entertainment is your second-largest controllable expense on a P&L, and almost nobody tracks it.We also get into what it's really like to build a company with your spouse. Honest, funny, and worth hearing if you're considering it.This episode is brought to you by FirstRead, the AI-powered legal contract assistant. Use code BYNDTHECODE10 for 10% off at https://first-read.com/signup?ref=BEYOND2026`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1780958210770-8a3f992ee6d2e.jpg`,
+    thumb: `https://img.youtube.com/vi/P1lX3xBdB28/maxresdefault.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/121197923/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-5-8%2F425765844-44100-2-19299353c576e.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -149,7 +149,7 @@ const EPISODES = [
     title: `Crypto Compliance’s Content King: Stephen Sargeant on Investigations, LinkedIn, and Building Airdropd`,
     date: `February 23, 2026`,
     desc: `Stephen Sargeant (Airdropd) breaks down what crypto compliance actually looks like from the inside: five years at Bitfinex handling investigations and law enforcement requests, why the compliance community is tighter (and more welcoming) than people assume, and how a single 20-minute video to Chainalysis turned into producing their podcast, Public Key.We also get practical on content: why “AI slop” is making real creators stand out, why LinkedIn is a “value piggy bank,” and what crypto Twitter natives get wrong when they try to port their influence over. Plus: surviving trolls, building narrative in a chaotic industry, and how early-stage founders can approach compliance without killing the business.`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1771871072004-c5f4dab6b17a7.jpg`,
+    thumb: `assets/E85_ Anna George.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/115931043/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-1-23%2F418671218-44100-2-523f6fc66ea83.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -565,7 +565,7 @@ const EPISODES = [
     title: `Live @BB25: Youval Rouach, CEO, Bits of Gold; BILS`,
     date: `March 30, 2025`,
     desc: `On March 26, 2025, Collider. VC hosted Building Blocks 2025, as part of ETH TLV. Our host, Yitzy Hammer was invited to come and interview guests and speakers.Youval Rouach is CEO and Co-Founder of Bits of Gold, one of Israel's leading crypto currency exchanges and also of BILS, the first Israeli-shekel backed stablecoin, to be issued by Bits of Gold.`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1743335483695-b7393cd47c114.jpg`,
+    thumb: `assets/E53_ Carlo D'Angelo.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/100576713/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-2-30%2F397488677-44100-2-8a19332519d1f.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1211,7 +1211,7 @@ Hillel's work is published in some of the world's top tech publications includin
     title: `Beyond the Law of Code with Canadian Lawyer and Podcast Host, Jacob Robinson`,
     date: `September 18, 2023`,
     desc: `When I decided to expand my legal practice into blockchain regulatory compliance, one of the most valuable resources available was Jacob Robinson's blockchain legal podcast, the Law of Code. Now on its 115th episode, Jacob's podcast has featured anyone and everyone in the blockchain legal and regulatory space, including SEC Commissioner, Hester Pierce, Coinbase's CLO, Paul Grewal, and Yours Truly (Episode #58 😉). It's not often that Jacob gets to be in the hot seat and in this episode, we discussed what it was like building up his podcast, what he has in store for the future, and his perspectives on the blockchain legal industry, from his standpoint as a Canadian lawyer, as a crypto enthusiast, and as the LOC host. Enjoy, and make sure to subscribe to the Law of Code: https://open.spotify.com/show/4RSekM9c79F86cI2weUq66?si=3e33d340bcf74ad1`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1695026011412-ad563d79ef2ff.jpg`,
+    thumb: `assets/E100_ Karen Knox.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/76037933/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-8-18%2F347473427-44100-2-b93c623924c3b.m4a`,
     spotify: `#`,
     apple: `#`,
@@ -1224,7 +1224,7 @@ Hillel's work is published in some of the world's top tech publications includin
     title: `From Alameda's Trading Desks to Tomorrow's AI & NFTs: A Crypto Odyssey with John Keh`,
     date: `August 31, 2023`,
     desc: `In this episode, I sit down with John Keh, a pioneer in the Web3 space and a key player in the cryptocurrency industry. As one of the first employees at Alameda Research, the legendary cryptocurrency trading firm founded by Sam Bankman-Fried, John has unique insights into crypto, NFTs, and AI. He is also the founder of RuntheChain, a web3 marketing and tech development hub, as well as a family office focused on web3 and emerging technologies.`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1693484523200-abd4a613e68a3.jpg`,
+    thumb: `assets/E90_ Stephen Sargeant.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/75304014/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-31%2Fba27eb77-9dab-c6c2-831a-8586d1d00edd.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1237,7 +1237,7 @@ Hillel's work is published in some of the world's top tech publications includin
     title: `Crypto Crime with Ex-Prosecutor turned Binance Investigator Amit Levin`,
     date: `August 21, 2023`,
     desc: `Amit used to be the Head of the Economics Department at the Cyber Unit of Israel's State Attorney before leaving to join the world's largest crypto exchange, Binance, as a Special Investigator. In this episode, we discuss how blockchain is used by some criminals to evade taxes and local authorities and how that is about to change [and already has for the most part].`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1692609368666-ee320e05b64d.jpg`,
+    thumb: `assets/E80_ Steve Epstein.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/74867683/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-7-21%2Fa464c062-3b86-7bea-c0fe-58640d9430c7.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1254,7 +1254,7 @@ The workshop is titled "How web3 tools can be Used for Charity and Impact." I wi
 In this episode, I interviewed Jessica Salama, previously Head of Growth at GoodDollar, a powerhouse in the web3 community, and just generally an awesome person.
 Jess and I share a passion for web3 social impact and we had a fascinating conversation on the subject.
 Enjoy!`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1689544840277-19ea8736686e4.jpg`,
+    thumb: `assets/E70_ Vivek Jayaram.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/73480928/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-6-16%2F339532741-44100-2-7f0764ae99f46.m4a`,
     spotify: `#`,
     apple: `#`,
@@ -1272,7 +1272,7 @@ You can track the lawsuit here. 2. Everyone is talking about AI. Everyone is *us
 4:00 - Social media platforms using algorithms that knowingly and perhaps intentionally create addiction and mental health issues among youth and teens.
 17:00 - BigCos using our data to train AI.
 21:00 - Who does AI output belong to?`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1689080343414-c4774cbcac63c.jpg`,
+    thumb: `assets/E69_ Dr. Shmuel Abramzon.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/73270869/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-6-11%2F0023db0a-0dc0-05d1-a73c-5e75479f0254.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1305,7 +1305,7 @@ https://twitter.com/skominers`,
 In this episode, I discuss some of the important privacy aspects of ChatGPT and other AI tools, together with Avishai Ostrin, Director of Advisory Services at Privacy Team.
 This isn't the first time Avishai and I have combined forces. We co-authored an article about blockchain and privacy last year, titled: Privacy on the Blockchain — What role does privacy play in a world where nobody is ‘doxxed’?
 At the beginning of the episode [___], we discussed a case where someone asked ChatGPT for information about himself, and due to false information on the web, where the AI was drawing its data from, the AI said he was dead. The gentleman is actually a computer scientist and leading privacy technologist who helped develop Europe's GDPR and ePrivacy rules by the name of Alexander Hanff and he wrote an article all about it, with his take on ChatGPT, at least from a privacy perspective, here: https://www.theregister.com/2023/03/02/chatgpt_considered_harmful/ Enjoy! UPDATE: Since recording this episode (just a few days ago - to give you an idea as to the speed that things are moving), ChatGPT resumed service in Italy - https://techcrunch.com/2023/04/28/chatgpt-resumes-in-italy/`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1682861647409-2b61b2a1f8db5.jpg`,
+    thumb: `assets/E40_ prof. edward lee.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/69541719/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-3-30%2Fd59f4012-172e-ecaf-828d-5ca03c05fa0a.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1319,7 +1319,7 @@ At the beginning of the episode [___], we discussed a case where someone asked C
     date: `March 27, 2023`,
     desc: `In this episode, I had the pleasure of interviewing Zach Abramowitz, an expert in the world of legal technology. We dove deep into the fascinating realm of #LegalTech and discussed how generative AI is poised to revolutionize the legal profession.
 helps law firms and law departments identify and partner with the most cutting-edge technology companies. Some of the companies Zach mentioned, include Darrow, Term Scout, and LegalMation. You can watch Zach's rockin' music video here.`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/36761908/36761908-1679900084007-3d7cb8572f14.jpg`,
+    thumb: `assets/E30 Flavia Naves.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/67385375/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-27%2F5dd5e7db-482b-48e0-025a-d22b8ab5fa26.mp3`,
     spotify: `#`,
     apple: `#`,
@@ -1344,7 +1344,7 @@ Links:
 2. Video where I called Brian, Philip 🤣 - https://www.youtube.com/watch?v=BM2blblV7-o&t=3s
 3. https://www.science.org/content/article/scientists-explore-ai-written-text-journals-hammer-policies
 4. Brian's podcast - https://shows.acast.com/ipse-dixit`,
-    thumb: `https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode400/36761908/36761908-1678370973522-84003341be4ee.jpg`,
+    thumb: `assets/E2 7Jamie Bartlett.jpg`,
     audio: `https://anchor.fm/s/dbb6ced0/podcast/play/66240873/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2023-2-9%2F55252526-bfdb-d2e8-2883-a38f7cf611c9.mp3`,
     spotify: `#`,
     apple: `#`,

@@ -322,12 +322,6 @@ def main():
                 '', title, flags=re.I
             ).strip()
 
-        # Thumbnail
-        if known.get('thumb'):
-            thumb = known['thumb']
-        else:
-            thumb = find_thumb(ep_label, item['thumb_url'])
-
         # YouTube — manual override wins, then existing value, then auto-match
         if seq_id in yt_override:
             youtube = yt_override[seq_id]
@@ -335,6 +329,17 @@ def main():
             youtube = known['youtube']
         else:
             youtube = match_youtube(title, guest, yt_videos)
+
+        # Thumbnail — local asset > YouTube 16:9 thumbnail > RSS artwork (square)
+        if known.get('thumb') and not known['thumb'].startswith('https://d3t3ozftmdmh3i'):
+            thumb = known['thumb']
+        else:
+            thumb = find_thumb(ep_label, item['thumb_url'])
+            if thumb == item['thumb_url'] and youtube != '#':
+                # RSS artwork is square; use YouTube thumbnail (always 16:9) instead
+                yt_id = re.search(r'[?&]v=([^&]+)', youtube)
+                if yt_id:
+                    thumb = f'https://img.youtube.com/vi/{yt_id.group(1)}/maxresdefault.jpg'
 
         episodes.append({
             'id':      seq_id,
