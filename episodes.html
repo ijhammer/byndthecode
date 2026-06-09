@@ -122,12 +122,13 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function a(){dot.style.left=mx+'px';dot.style.top=my+'px';rx+=(mx-rx)*0.14;ry+=(my-ry)*0.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
 
 const list = document.getElementById('ep-list');
-EPISODES.forEach(ep => {
+const fullEpisodes = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
+fullEpisodes.forEach(ep => {
   const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special').replace(/^#?BB\d+$/, 'Bonus') : (ep.date || '');
   list.innerHTML += `
     <a href="episode.html?id=${ep.id}" class="ep-row">
       <div class="ep-thumb-wrap">
-        <img src="${ep.thumb}" alt="${ep.guest}" loading="lazy">
+        <img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')">
         <div class="ep-play-sm"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#C8FF00"/><polygon points="15,11 32,20 15,29" fill="#000"/></svg></div>
       </div>
       <div class="ep-meta">

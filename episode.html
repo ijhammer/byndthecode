@@ -225,14 +225,15 @@ if (ep) {
   document.getElementById('guest-bio').textContent = '';
   const APPLE_URL = 'https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418';
   const SPOTIFY_SHOW = 'https://open.spotify.com/show/7x77TlOnI7BSz4fnIkhvVs';
-  const YOUTUBE_URL = 'https://www.youtube.com/@byndthecode';
+  const YOUTUBE_CHANNEL = 'https://www.youtube.com/@byndthecode';
   const spotifyHref = (ep.spotify && ep.spotify !== '#') ? ep.spotify : SPOTIFY_SHOW;
+  const youtubeHref = (ep.youtube && ep.youtube !== '#') ? ep.youtube : YOUTUBE_CHANNEL;
   document.getElementById('btn-apple').href = APPLE_URL;
   document.getElementById('btn-spotify').href = spotifyHref;
-  document.getElementById('btn-youtube').href = YOUTUBE_URL;
+  document.getElementById('btn-youtube').href = youtubeHref;
   document.getElementById('share-apple').href = APPLE_URL;
   document.getElementById('share-spotify').href = spotifyHref;
-  document.getElementById('share-youtube').href = YOUTUBE_URL;
+  document.getElementById('share-youtube').href = youtubeHref;
   ['btn-apple','btn-spotify','btn-youtube','share-apple','share-spotify','share-youtube'].forEach(id => {
     document.getElementById(id).target = '_blank';
     document.getElementById(id).rel = 'noopener';
