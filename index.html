@@ -48,13 +48,13 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 
 /* ── CAROUSEL ── */
 .carousel-section { background:var(--black); overflow:hidden; }
-.carousel-track-wrap { overflow:hidden; position:relative; }
+.carousel-track-wrap { overflow:hidden; position:relative; min-height:138px; }
 .carousel-track-wrap::before, .carousel-track-wrap::after { content:''; position:absolute; top:0; bottom:0; width:120px; z-index:2; pointer-events:none; }
 .carousel-track-wrap::before { left:0; background:linear-gradient(to right, var(--black), transparent); }
 .carousel-track-wrap::after  { right:0; background:linear-gradient(to left, var(--black), transparent); }
 .carousel-track { display:flex; gap:6px; width:max-content; padding:6px 0; }
-.carousel-track.row1 { animation: scrollLeft 90s linear infinite; }
-.carousel-track.row2 { animation: scrollRight 90s linear infinite; }
+.carousel-track.row1 { animation: scrollLeft 160s linear infinite; }
+.carousel-track.row2 { animation: scrollRight 160s linear infinite; }
 @keyframes scrollLeft  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 @keyframes scrollRight { from { transform:translateX(-50%); } to { transform:translateX(0); } }
 .carousel-track-wrap:hover .carousel-track { animation-play-state:paused; }
@@ -137,6 +137,41 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
 
 .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease,transform 0.7s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (hover: none) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+  /* prevent tap triggering hover-pause on carousel */
+  .carousel-track-wrap:hover .carousel-track { animation-play-state: running !important; }
+}
+@media (max-width: 1024px) {
+  .latest-grid { grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .episode-item { grid-template-columns: 220px 1fr; gap: 28px; }
+  .section-about { gap: 48px; }
+}
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 10px; }
+  .cta-band { padding: 36px 20px 28px !important; }
+  .carousel-track-wrap::before, .carousel-track-wrap::after { width: 32px; }
+  .section-latest { padding: 48px 20px; }
+  .section-popular { padding: 48px 20px; }
+  .section-subscribe { padding: 60px 20px; }
+  .section-sponsors { padding: 60px 20px !important; }
+  .section-about { grid-template-columns: 1fr; gap: 32px; padding: 60px 20px; }
+  .about-photo img { height: 280px; }
+  .latest-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+  .episode-item { grid-template-columns: 1fr; gap: 16px; }
+  footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-wrap: wrap; gap: 12px; }
+}
+@media (max-width: 480px) {
+  .nav-links { display: none; }
+  .latest-grid { grid-template-columns: 1fr; }
+  .platform-card { padding: 20px; min-width: 110px; }
+}
 </style>
 </head>
 <body>
@@ -178,7 +213,7 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
 </style>
 
 <!-- CTA BAND -->
-<div style="background:var(--black);padding:56px 48px 48px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+<div class="cta-band" style="background:var(--black);padding:56px 48px 48px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
   <a href="episodes.html" class="btn-primary">All Episodes</a>
   <a href="#subscribe" class="btn-outline">Subscribe Free</a>
 </div>
@@ -211,11 +246,11 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
 </section>
 
 <!-- SPONSORS & PARTNERS -->
-<section style="padding:80px 56px;background:#080808;" id="sponsors">
+<section class="section-sponsors" style="padding:80px 56px;background:#080808;" id="sponsors">
   <p class="section-label reveal">Supporting The Show</p>
   <h2 class="section-title reveal">Sponsors &amp; Partners</h2>
 
-  <div id="all-partners-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,300px));gap:20px;"></div>
+  <div id="all-partners-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,300px));gap:20px;justify-content:center;"></div>
 
   <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.25);letter-spacing:0.08em;text-transform:uppercase;margin-top:40px;text-align:center;" class="reveal">
     Interested in sponsoring? <a href="mailto:yitzy@dltlaw.co.il" style="color:var(--accent);text-decoration:none;">Get in touch →</a>
@@ -377,12 +412,12 @@ if (grid) {
   allCards.forEach(s => {
     grid.innerHTML += `
       <a href="${s.url}" target="_blank" rel="noopener"
-        style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#111;border:1px solid rgba(255,255,255,0.08);padding:28px 20px 24px;text-decoration:none;min-height:140px;transition:border-color 0.2s,background 0.2s;text-align:center;position:relative;"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#161616;border:1px solid rgba(255,255,255,0.14);padding:28px 20px 24px;text-decoration:none;min-height:140px;transition:border-color 0.2s,background 0.2s;text-align:center;position:relative;"
         onmouseover="this.style.borderColor='#C8FF00';this.style.background='#141414'"
         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='#111'">
         <span style="position:absolute;top:10px;left:12px;font-size:8px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;background:${s.badgeColor};color:${s.badgeText};padding:2px 7px;">${s.badge}</span>
-        ${s.logo ? `<img src="${s.logo}" alt="${s.name}" style="height:40px;width:auto;max-width:160px;object-fit:contain;">` : `<span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>`}
-        <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);line-height:1.5;">${s.tagline}</span>
+        ${s.logo ? `<div style="background:#fff;padding:8px 16px;border-radius:4px;display:flex;align-items:center;justify-content:center;"><img src="${s.logo}" alt="${s.name}" style="height:32px;width:auto;max-width:140px;object-fit:contain;"></div>` : `<span style="font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;">${s.name}</span>`}
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);line-height:1.5;">${s.tagline}</span>
         ${s.promo ? `<span style="margin-top:4px;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.3);padding:4px 12px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C8FF00;">${s.promoDesc} · ${s.promo}</span>` : ''}
       </a>`;
   });
