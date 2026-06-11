@@ -13,6 +13,43 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://beyondthecode.fm/assets/podcast-cover.jpg">
+<meta name="twitter:title" content="Beyond the Code — Crypto Law Podcast with Yitzy Hammer">
+<meta name="twitter:description" content="The unfiltered legal and regulatory world of crypto, web3 and emerging tech. With Yitzy Hammer.">
+<meta name="twitter:site" content="@byndthecode">
+<meta name="description" content="Beyond the Code is a crypto law podcast hosted by Yitzy Hammer — exploring the unfiltered legal and regulatory world of crypto, web3, and emerging tech. 100+ episodes with founders, regulators, and the lawyers shaping digital assets.">
+<link rel="canonical" href="https://beyondthecode.fm/">
+<link rel="alternate" type="application/rss+xml" title="Beyond the Code Podcast" href="https://anchor.fm/s/dbb6ced0/podcast/rss">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastSeries",
+  "name": "Beyond the Code",
+  "description": "The unfiltered legal and regulatory world of crypto, web3 and emerging tech. Hosted by Yitzy Hammer, a crypto and blockchain lawyer at DLT Law in Israel. 100+ episodes with founders, regulators, compliance officers, law enforcement, and the lawyers shaping digital assets.",
+  "url": "https://beyondthecode.fm",
+  "image": "https://beyondthecode.fm/assets/podcast-cover.jpg",
+  "webFeed": "https://anchor.fm/s/dbb6ced0/podcast/rss",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Yitzy Hammer",
+    "jobTitle": "Crypto & Blockchain Lawyer",
+    "worksFor": { "@type": "Organization", "name": "DLT Law" }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Beyond the Code",
+    "url": "https://beyondthecode.fm",
+    "logo": "https://beyondthecode.fm/assets/podcast-cover.jpg"
+  },
+  "sameAs": [
+    "https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418",
+    "https://open.spotify.com/show/7x77TlOnI7BSz4fnIkhvVs",
+    "https://www.youtube.com/@byndthecode",
+    "https://x.com/byndthecode",
+    "https://linkedin.com/company/byndthecode/"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -48,17 +85,16 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 
 /* ── CAROUSEL ── */
 .carousel-section { background:var(--black); overflow:hidden; }
-.carousel-track-wrap { overflow:hidden; position:relative; min-height:138px; }
+.carousel-track-wrap { overflow:hidden; position:relative; min-height:201px; }
 .carousel-track-wrap::before, .carousel-track-wrap::after { content:''; position:absolute; top:0; bottom:0; width:120px; z-index:2; pointer-events:none; }
 .carousel-track-wrap::before { left:0; background:linear-gradient(to right, var(--black), transparent); }
 .carousel-track-wrap::after  { right:0; background:linear-gradient(to left, var(--black), transparent); }
-.carousel-track { display:flex; gap:6px; width:max-content; padding:6px 0; }
-.carousel-track.row1 { animation: scrollLeft 160s linear infinite; }
-.carousel-track.row2 { animation: scrollRight 160s linear infinite; }
-@keyframes scrollLeft  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-@keyframes scrollRight { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+.carousel-track { display:flex; gap:6px; width:max-content; padding:6px 0; will-change:transform; }
+.carousel-track.row1 { animation: scrollLeft 220s linear infinite; }
+@keyframes scrollLeft  { from { transform:translate3d(0,0,0); } to { transform:translate3d(-50%,0,0); } }
+@keyframes scrollRight { from { transform:translate3d(-50%,0,0); } to { transform:translate3d(0,0,0); } }
 .carousel-track-wrap:hover .carousel-track { animation-play-state:paused; }
-.ep-card { position:relative; flex-shrink:0; width:200px; height:126px; overflow:hidden; display:block; text-decoration:none; }
+.ep-card { position:relative; flex-shrink:0; width:300px; height:189px; overflow:hidden; display:block; text-decoration:none; }
 .ep-card img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.75) grayscale(100%); transition:transform 0.4s ease,filter 0.3s ease; }
 .ep-card:hover img { transform:scale(1.08); filter:brightness(1) grayscale(0%); }
 .ep-card-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
@@ -127,6 +163,24 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 .stat-num { font-size:36px; font-weight:900; color:var(--accent); line-height:1; margin-bottom:6px; }
 .stat-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
 
+/* ── SHOW INTRO ── */
+.section-intro { background:var(--black); padding:72px 0 72px 56px; display:grid; grid-template-columns:1fr 1fr; align-items:center; overflow:hidden; }
+.intro-text { padding-right:48px; }
+.intro-headline { font-size:clamp(18px,2vw,32px); font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.12; color:var(--white); margin-bottom:22px; }
+.intro-headline .accent { color:var(--accent); }
+.intro-body p { font-size:13px; font-weight:500; line-height:1.75; color:rgba(255,255,255,0.55); margin-bottom:14px; }
+.intro-body p:last-child { margin-bottom:0; }
+.intro-mosaic-outer { position:relative; overflow:hidden; height:420px; }
+.intro-mosaic-fade { position:absolute; left:0; top:0; bottom:0; width:120px; background:linear-gradient(to right, var(--black) 10%, transparent 100%); z-index:3; pointer-events:none; }
+.intro-mosaic { display:flex; flex-direction:column; gap:10px; height:100%; }
+.mosaic-row { display:flex; gap:10px; flex:1; min-height:0; will-change:transform; }
+.mosaic-row:nth-child(2) { transform:translateX(-18px); }
+.mosaic-row:nth-child(3) { transform:translateX(12px); }
+.mosaic-tile { flex-shrink:0; border-radius:12px; overflow:hidden; }
+.mosaic-tile img { display:block; width:300px; height:133px; object-fit:cover; filter:grayscale(1) brightness(0.2); transition:filter 0.3s; }
+.mosaic-tile.prominent img { filter:grayscale(1) brightness(0.5); }
+.mosaic-tile:hover img { filter:grayscale(1) brightness(0.92); }
+
 /* ── FOOTER ── */
 footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); padding:44px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
 .footer-logo img { height:28px; width:auto; object-fit:contain; opacity:0.65; }
@@ -149,6 +203,8 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   .latest-grid { grid-template-columns: repeat(2,1fr); gap: 20px; }
   .episode-item { grid-template-columns: 220px 1fr; gap: 28px; }
   .section-about { gap: 48px; }
+  .intro-mosaic-outer { height: 360px; }
+  .mosaic-tile img { width: 240px; height: 113px; }
 }
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
@@ -166,11 +222,25 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   .episode-item { grid-template-columns: 1fr; gap: 16px; }
   footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
   .footer-links { flex-wrap: wrap; gap: 12px; }
+  .section-intro { grid-template-columns: 1fr; padding: 60px 20px 0; }
+  .intro-text { padding-right: 0; }
+  .intro-mosaic-outer { height: 300px; }
+  .mosaic-tile img { width: 200px; height: 93px; }
 }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+.nav-toggle span { display:block; width:22px; height:2px; background:var(--white); margin:5px 0; transition:transform 0.25s,opacity 0.25s; }
+.nav-toggle.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity:0; }
+.nav-toggle.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 @media (max-width: 480px) {
-  .nav-links { display: none; }
+  .nav-toggle { display:block; }
+  .nav-links { display:none; }
+  .nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(0,0,0,0.97); padding:16px 20px 20px; gap:18px; border-top:1px solid rgba(255,255,255,0.08); z-index:99; }
+  .nav-links.open a { font-size:13px; opacity:1; }
   .latest-grid { grid-template-columns: 1fr; }
   .platform-card { padding: 20px; min-width: 110px; }
+  .intro-mosaic-outer { height: 240px; }
+  .mosaic-tile img { width: 160px; height: 73px; }
 }
 </style>
 </head>
@@ -181,7 +251,8 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/btc logo.png" alt="Beyond the Code"></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="episodes.html">Episodes</a></li>
     <li><a href="#subscribe">Subscribe</a></li>
     <li><a href="#about">About</a></li>
@@ -218,13 +289,34 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   <a href="#subscribe" class="btn-outline">Subscribe Free</a>
 </div>
 
-<!-- CAROUSEL — populated by JS from EPISODES array -->
-<section class="carousel-section" id="carousel-section" style="padding-bottom:56px;">
-  <div class="carousel-track-wrap">
-    <div class="carousel-track row1" id="carousel-row1"></div>
+<!-- SHOW INTRO -->
+<section class="section-intro">
+  <div class="intro-text reveal">
+    <h2 class="intro-headline">On <span class="accent">Beyond the Code</span>, Yitzy Hammer goes backstage with the founders, lawmakers, regulators, and legal minds shaping the frontier of AI, crypto, and blockchain — and the laws racing to catch up.</h2>
+    <div class="intro-body">
+      <p>Each conversation digs into two things: the origin story that got them here, and the hard questions no one has clean answers to yet. Where is the technology actually heading? Who's writing the rules, and what happens when the rules don't exist yet? What does it take to build responsibly when the ground keeps shifting under everyone's feet?</p>
+      <p>The goal is to surface the untold decisions, the lessons learned the hard way, and the insights that make the work sharper — for Yitzy, and for everyone listening.</p>
+    </div>
   </div>
-  <div class="carousel-track-wrap" style="margin-top:6px;">
-    <div class="carousel-track row2" id="carousel-row2"></div>
+  <div class="intro-mosaic-outer">
+    <div class="intro-mosaic-fade"></div>
+    <div class="intro-mosaic" id="intro-mosaic">
+      <div class="mosaic-row">
+        <div class="mosaic-tile"><img src="images/feature-screenshot-1.png" alt="Beyond the Code" loading="lazy"></div>
+        <div class="mosaic-tile prominent"><img src="images/feature-eva-conf.jpg" alt="Yitzy Hammer at a crypto conference" loading="lazy"></div>
+        <div class="mosaic-tile prominent"><img src="images/feature-building-blocks.jpg" alt="Beyond the Code at Building Blocks 25" loading="lazy"></div>
+      </div>
+      <div class="mosaic-row">
+        <div class="mosaic-tile prominent"><img src="images/feature-dlt-booth.jpg" alt="Beyond the Code at DLT Law" loading="lazy"></div>
+        <div class="mosaic-tile"><img src="images/feature-hero-graphic.png" alt="Yitzy Hammer in conversation" loading="lazy"></div>
+        <div class="mosaic-tile"><img src="images/feature-studio-2.png" alt="Yitzy Hammer in the studio" loading="lazy"></div>
+      </div>
+      <div class="mosaic-row">
+        <div class="mosaic-tile"><img src="images/feature-studio-3.png" alt="Yitzy Hammer in the studio" loading="lazy"></div>
+        <div class="mosaic-tile prominent"><img src="images/feature-building-blocks.jpg" alt="Beyond the Code at Building Blocks 25" loading="lazy"></div>
+        <div class="mosaic-tile prominent"><img src="images/feature-chatgpt-1.png" alt="Beyond the Code" loading="lazy"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -235,10 +327,17 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   <div class="latest-grid reveal" id="latest-grid"></div>
 </section>
 
+<!-- CAROUSEL — populated by JS from EPISODES array -->
+<section class="carousel-section" id="carousel-section" style="padding-bottom:56px;">
+  <div class="carousel-track-wrap">
+    <div class="carousel-track row1" id="carousel-row1"></div>
+  </div>
+</section>
+
 <!-- MOST POPULAR EPISODES — populated by JS -->
 <section class="section-popular" id="popular">
   <p class="section-label reveal">The Podcast</p>
-  <h2 class="section-title reveal">Most Popular Episodes</h2>
+  <h2 class="section-title reveal">Popular Episodes</h2>
   <div class="episodes-list" id="popular-list"></div>
   <div style="text-align:center;margin-top:48px;">
     <a href="episodes.html" class="btn-outline">View All Episodes →</a>
@@ -316,7 +415,7 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
     <li><a href="https://x.com/byndthecode" target="_blank" rel="noopener">X / Twitter</a></li>
     <li><a href="https://linkedin.com/company/byndthecode/" target="_blank" rel="noopener">LinkedIn</a></li>
   </ul>
-  <p class="footer-copy">© 2024 Beyond the Code. All rights reserved.</p>
+  <p class="footer-copy">© 2025 Beyond the Code. All rights reserved.</p>
 </footer>
 
 <script src="episodes-data.js"></script>
@@ -330,21 +429,13 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function(){
   const SVG_PLAY = `<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#C8FF00"/><polygon points="17,12 35,22 17,32" fill="#000"/></svg>`;
   const THUMB_FIX = `onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"`;
-  const CARD = ep => `<a href="episode.html?id=${ep.id}" class="ep-card"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${THUMB_FIX}><div class="ep-card-overlay">${SVG_PLAY}</div></a>`;
+  const CARD = ep => `<a href="/ep/${ep.id}.html" class="ep-card"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${THUMB_FIX}><div class="ep-card-overlay">${SVG_PLAY}</div></a>`;
   // Only show full episodes (standard labels like E1, CS1, BB25, etc.) — excludes Shorts/clips
-  const fullEps = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
+  const fullEps = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel) && e.id > 28);
   const seenThumbs = new Set();
   const deduped = fullEps.filter(ep => { if (seenThumbs.has(ep.thumb)) return false; seenThumbs.add(ep.thumb); return true; });
-  const half = Math.ceil(deduped.length / 2);
-  const row1eps = deduped.slice(0, half);
-  const row2eps = deduped.slice(half);
   const r1 = document.getElementById('carousel-row1');
-  const r2 = document.getElementById('carousel-row2');
-  // Render twice for seamless loop
-  [r1, r2].forEach((el, i) => {
-    const src = i === 0 ? row1eps : row2eps;
-    el.innerHTML = [...src, ...src].map(CARD).join('');
-  });
+  r1.innerHTML = [...deduped, ...deduped].map(CARD).join('');
 })();
 
 // ── LATEST EPISODES (4 newest) ──
@@ -357,7 +448,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   latestFull.slice(0, 4).forEach(ep => {
     const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special') : ep.date;
     grid.innerHTML += `
-      <a href="episode.html?id=${ep.id}" class="latest-card">
+      <a href="/ep/${ep.id}.html" class="latest-card">
         <div class="latest-card-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" ${THUMB_FIX}><div class="latest-play">${SVG_PLAY}</div></div>
         <p class="latest-card-ep">${label}</p>
         <h3 class="latest-card-title">${ep.guest} — ${ep.title.substring(0,55)}</h3>
@@ -369,8 +460,8 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function(){
   const list = document.getElementById('popular-list');
   if (!list) return;
-  // Curated by guest name — these are the standout episodes
-  const POPULAR_GUESTS = ['Ran Neuner','Tigran Gambaryan','Yoni Assia','Charlie Shrem','JP Thor','Jason Gottlieb'];
+  // Curated list — strings match by guest name, numbers match by episode id
+  const POPULAR_GUESTS = ['Ran Neuner','Tigran Gambaryan','Samuel Cardillo','Charlie Shrem',1,'Hester Peirce'];
   const SVG = `<svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="#C8FF00"/><polygon points="22,16 42,28 22,40" fill="#000"/></svg>`;
   const APPLE_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#9B59B6"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 4.8c2 0 3.6 1.6 3.6 3.6S14 12 12 12s-3.6-1.6-3.6-3.6S10 4.8 12 4.8zM12 21.6c-3 0-5.7-1.5-7.3-3.8.4-2.4 5.5-3.7 7.3-3.7s6.9 1.3 7.3 3.7c-1.6 2.3-4.3 3.8-7.3 3.8z"/></svg>`;
   const SPOT_SVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
@@ -380,7 +471,9 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   const YT_CHANNEL = 'https://www.youtube.com/@byndthecode';
   const fullEps = EPISODES.filter(e => e.epLabel && /^[A-Z]{1,2}\d/.test(e.epLabel));
   POPULAR_GUESTS.forEach(name => {
-    const ep = fullEps.find(e => e.guest === name || e.guest.includes(name));
+    const ep = typeof name === 'number'
+      ? fullEps.find(e => e.id === name)
+      : fullEps.find(e => e.guest === name || e.guest.includes(name));
     if (!ep) return;
     const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special') : ep.date;
     const appleHref = (ep.apple && ep.apple !== '#') ? ep.apple : APPLE_SHOW;
@@ -388,12 +481,12 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
     const ytHref = (ep.youtube && ep.youtube !== '#') ? ep.youtube : YT_CHANNEL;
     list.innerHTML += `
       <div class="episode-item">
-        <a href="episode.html?id=${ep.id}" class="ep-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"><div class="ep-play">${SVG}</div></a>
+        <a href="/ep/${ep.id}.html" class="ep-thumb"><img src="${ep.thumb}" alt="${ep.guest}" loading="lazy" onerror="if(!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')" onload="if(this.naturalWidth&&this.naturalWidth<300&&!this.src.includes('hqdefault'))this.src=this.src.replace('maxresdefault','hqdefault')"><div class="ep-play">${SVG}</div></a>
         <div class="ep-info">
           <p class="ep-number">${label}</p>
           <h3 class="ep-title">${ep.guest} — ${ep.title.substring(0,70)}</h3>
           <p class="ep-desc">${ep.desc.substring(0,220)}</p>
-          <a href="episode.html?id=${ep.id}" class="ep-listen">Listen Now →</a>
+          <a href="/ep/${ep.id}.html" class="ep-listen">Listen Now →</a>
           <div class="ep-platforms">
             <a href="${appleHref}" target="_blank" rel="noopener" class="platform-badge">${APPLE_SVG}Apple Podcasts</a>
             <a href="${spotifyHref}" target="_blank" rel="noopener" class="platform-badge">${SPOT_SVG}Spotify</a>
@@ -409,7 +502,7 @@ const SPONSORS = [
   {
     name: "First Read",
     tagline: "Your daily briefing on crypto, law & regulation",
-    logo: "https://first-read.com/logo.svg",
+    logo: "images/logo_first_read_white.svg",
     colorLogo: true,
     promo: "BYNDTHECODE10",
     promoDesc: "10% off",
@@ -458,6 +551,42 @@ if (grid) {
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal,.episode-item').forEach(el=>obs.observe(el));
+
+// Hamburger menu toggle
+(function(){
+  const toggle = document.getElementById('nav-toggle');
+  const links  = document.getElementById('nav-links');
+  if (!toggle) return;
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('active');
+    links.classList.remove('open');
+  }));
+})();
+
+// ── INTRO MOSAIC PARALLAX ──
+(function(){
+  const section = document.querySelector('.section-intro');
+  const rows = section ? section.querySelectorAll('.mosaic-row') : [];
+  if (!rows.length) return;
+  const BASE_X = [0, -18, 12];
+  const SPEEDS = [0, 0.03, -0.02];
+  function update() {
+    const rect = section.getBoundingClientRect();
+    if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+    const progress = (window.pageYOffset - section.offsetTop + window.innerHeight) /
+      (window.innerHeight + section.offsetHeight);
+    rows.forEach((row, i) => {
+      const dx = BASE_X[i] + progress * SPEEDS[i] * 120;
+      row.style.transform = `translateX(${dx}px)`;
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
 </script>
 </body>
 </html>

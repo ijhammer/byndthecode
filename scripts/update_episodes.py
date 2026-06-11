@@ -219,13 +219,11 @@ def parse_rss():
     items = []
     for item in channel.findall('item'):
         raw_title = (item.findtext('title') or '').strip()
-        guid      = (item.findtext('guid') or '').strip()
 
-        spotify_ep = guid if 'spotify' in guid or 'anchor' in guid else '#'
-        if spotify_ep.startswith('https://anchor.fm/byndthecode/'):
-            spotify_ep = spotify_ep.replace(
-                'https://anchor.fm/byndthecode/',
-                'https://podcasters.spotify.com/pod/show/byndthecode/')
+        # RSS <link> contains the Spotify Podcasters episode URL (e.g. podcasters.spotify.com/pod/show/.../episodes/...)
+        # <guid> is a plain UUID and is useless for deep-linking
+        rss_link   = (item.findtext('link') or '').strip()
+        spotify_ep = rss_link if ('podcasters.spotify.com' in rss_link or 'anchor.fm' in rss_link) else '#'
 
         pub_str = (item.findtext('pubDate') or '').strip()
         try:
@@ -359,7 +357,22 @@ def main():
 
     # ── Step 2: YouTube-only episodes (not matched to any RSS item) ──
     yt_only_new = 0
-    for vid in yt_videos:
+
+    # When no API key, fall back to preserving all existing YouTube-only entries from yt_known
+    yt_sources = yt_videos if yt_videos else [
+        {
+            'url':      url,
+            'video_id': url.split('v=')[-1],
+            'title':    f.get('title', ''),
+            'desc':     f.get('desc', ''),
+            'date_fmt': f.get('date', ''),
+            'date_ts':  0,
+            'thumb':    f.get('thumb', ''),
+        }
+        for url, f in yt_known.items()
+    ]
+
+    for vid in yt_sources:
         if vid['url'] in matched_yt:
             continue   # already linked to an RSS episode
 
@@ -378,14 +391,14 @@ def main():
             'epLabel': known.get('epLabel') or extract_guest(vid['title']),
             'guest':   guest,
             'title':   title,
-            'date':    vid['date_fmt'],
+            'date':    known.get('date') or vid['date_fmt'],
             'desc':    desc,
             'thumb':   known.get('thumb') or vid['thumb'],
             'audio':   '#',
             'spotify': '#',
             'apple':   '#',
             'youtube': vid['url'],
-            '_ts':     vid['date_ts'],
+            '_ts':     known.get('date_ts', vid.get('date_ts', 0)),
         })
 
     # ── Step 3: sort all by date, reassign IDs ──

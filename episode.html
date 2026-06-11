@@ -5,9 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Episode — Beyond the Code</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<meta property="og:title" content="Beyond the Code Podcast">
-<meta property="og:image" content="https://beyondthecode.fm/assets/podcast-cover.jpg">
-<meta property="og:type" content="website">
+<meta name="description" id="meta-desc" content="Beyond the Code — crypto law podcast with Yitzy Hammer.">
+<meta property="og:title" id="og-title" content="Beyond the Code Podcast">
+<meta property="og:description" id="og-desc" content="The unfiltered legal and regulatory world of crypto, web3 and emerging tech. With Yitzy Hammer.">
+<meta property="og:image" id="og-image" content="https://beyondthecode.fm/assets/podcast-cover.jpg">
+<meta property="og:url" id="og-url" content="https://beyondthecode.fm/episode.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" id="twitter-image" content="https://beyondthecode.fm/assets/podcast-cover.jpg">
+<meta name="twitter:title" id="twitter-title" content="Beyond the Code Podcast">
+<meta name="twitter:description" id="twitter-desc" content="The unfiltered legal and regulatory world of crypto, web3 and emerging tech.">
+<meta name="twitter:site" content="@byndthecode">
+<link rel="canonical" id="canonical-link" href="https://beyondthecode.fm/episode.html">
+<link rel="alternate" type="application/rss+xml" title="Beyond the Code Podcast" href="https://anchor.fm/s/dbb6ced0/podcast/rss">
+<script type="application/ld+json" id="ep-jsonld"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -105,8 +116,16 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
   footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
   .footer-links { flex-wrap: wrap; gap: 12px; }
 }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+.nav-toggle span { display:block; width:22px; height:2px; background:var(--white); margin:5px 0; transition:transform 0.25s,opacity 0.25s; }
+.nav-toggle.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity:0; }
+.nav-toggle.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 @media (max-width: 480px) {
-  .nav-links { display: none; }
+  .nav-toggle { display:block; }
+  .nav-links { display:none; }
+  .nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(0,0,0,0.97); padding:16px 20px 20px; gap:18px; border-top:1px solid rgba(255,255,255,0.08); z-index:99; }
+  .nav-links.open a { font-size:13px; opacity:1; }
   .related-grid { grid-template-columns: 1fr; }
   .ep-listen-bar { gap: 8px; }
   .listen-btn { padding: 10px 14px; font-size: 11px; }
@@ -119,7 +138,8 @@ footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); p
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/btc logo.png" alt="Beyond the Code"></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="episodes.html">Episodes</a></li>
     <li><a href="index.html#subscribe">Subscribe</a></li>
     <li><a href="index.html#about">About</a></li>
@@ -214,24 +234,59 @@ const id = parseInt(params.get('id'));
 const ep = EPISODES.find(e => e.id === id);
 
 if (ep) {
+  const epTitle = ep.title || ep.guest;
+  const descShort = ep.desc.replace(/\s+/g, ' ').trim().substring(0, 155);
+  const epUrl = `https://beyondthecode.fm/episode.html?id=${ep.id}`;
+
   document.title = `${ep.guest} — Beyond the Code`;
+  document.getElementById('meta-desc').content = descShort;
+  document.getElementById('og-title').content = `${ep.guest} — Beyond the Code`;
+  document.getElementById('og-desc').content = descShort;
+  document.getElementById('og-image').content = ep.thumb;
+  document.getElementById('og-url').content = epUrl;
+  document.getElementById('twitter-title').content = `${ep.guest} — Beyond the Code`;
+  document.getElementById('twitter-desc').content = descShort;
+  document.getElementById('twitter-image').content = ep.thumb;
+  document.getElementById('canonical-link').href = `https://beyondthecode.fm/ep/${ep.id}.html`;
+
+  const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special $1') : `Episode ${ep.id}`;
+  const jsonld = {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    "name": epTitle,
+    "description": ep.desc.replace(/\s+/g, ' ').trim().substring(0, 500),
+    "url": epUrl,
+    "image": ep.thumb,
+    "datePublished": ep.date,
+    "episodeNumber": ep.epLabel,
+    "partOfSeries": {
+      "@type": "PodcastSeries",
+      "name": "Beyond the Code",
+      "url": "https://beyondthecode.fm"
+    },
+    "author": { "@type": "Person", "name": "Yitzy Hammer" },
+    "publisher": { "@type": "Organization", "name": "Beyond the Code", "url": "https://beyondthecode.fm" }
+  };
+  if (ep.audio) jsonld.associatedMedia = { "@type": "AudioObject", "contentUrl": ep.audio };
+  document.getElementById('ep-jsonld').textContent = JSON.stringify(jsonld);
+
   document.getElementById('hero-img').src = ep.thumb;
   document.getElementById('hero-img').alt = ep.guest;
-  const label = ep.epLabel ? ep.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'Consensus Special $1') : `Episode ${ep.id}`;
   document.getElementById('ep-num').textContent = (ep.date ? ep.date + ' · ' : '') + label;
   document.getElementById('ep-title').textContent = ep.title || ep.guest;
   document.getElementById('ep-desc').textContent = ep.desc;
   document.getElementById('guest-name').textContent = ep.guest;
   document.getElementById('guest-bio').textContent = '';
-  const APPLE_URL = 'https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418';
+  const APPLE_SHOW = 'https://podcasts.apple.com/il/podcast/beyond-the-code/id1673598418';
   const SPOTIFY_SHOW = 'https://open.spotify.com/show/7x77TlOnI7BSz4fnIkhvVs';
   const YOUTUBE_CHANNEL = 'https://www.youtube.com/@byndthecode';
+  const appleHref   = (ep.apple   && ep.apple   !== '#') ? ep.apple   : APPLE_SHOW;
   const spotifyHref = (ep.spotify && ep.spotify !== '#') ? ep.spotify : SPOTIFY_SHOW;
   const youtubeHref = (ep.youtube && ep.youtube !== '#') ? ep.youtube : YOUTUBE_CHANNEL;
-  document.getElementById('btn-apple').href = APPLE_URL;
+  document.getElementById('btn-apple').href = appleHref;
   document.getElementById('btn-spotify').href = spotifyHref;
   document.getElementById('btn-youtube').href = youtubeHref;
-  document.getElementById('share-apple').href = APPLE_URL;
+  document.getElementById('share-apple').href = appleHref;
   document.getElementById('share-spotify').href = spotifyHref;
   document.getElementById('share-youtube').href = youtubeHref;
   ['btn-apple','btn-spotify','btn-youtube','share-apple','share-spotify','share-youtube'].forEach(id => {
@@ -246,7 +301,7 @@ if (ep) {
   related.forEach(r => {
     const rl = r.epLabel ? r.epLabel.replace(/^E(\d+)$/, 'Episode $1').replace(/^CS(\d+)$/, 'CS $1') : `Ep ${r.id}`;
     grid.innerHTML += `
-      <a href="episode.html?id=${r.id}" class="related-card">
+      <a href="/ep/${r.id}.html" class="related-card">
         <div class="related-card-thumb"><img src="${r.thumb}" alt="${r.guest}" loading="lazy"></div>
         <p class="related-ep-num">${rl}</p>
         <p class="related-ep-title">${r.guest} — ${r.title.substring(0,60)}</p>
@@ -255,6 +310,21 @@ if (ep) {
 } else {
   document.getElementById('ep-title').textContent = 'Episode Not Found';
 }
+
+// Hamburger menu toggle
+(function(){
+  const toggle = document.getElementById('nav-toggle');
+  const links  = document.getElementById('nav-links');
+  if (!toggle) return;
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('active');
+    links.classList.remove('open');
+  }));
+})();
 </script>
 </body>
 </html>
