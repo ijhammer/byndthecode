@@ -1,5 +1,18 @@
 const EPISODES = [
   {
+    id: 187,
+    epLabel: `CS6`,
+    guest: `Mike Bacina`,
+    title: `Mike Bacina (NXT Law) on Why Boutique Law Firms Are Winning the AI Race & Our First-Ever Sponsor`,
+    date: `June 11, 2026`,
+    desc: `A milestone episode, recorded live at Consensus Miami 2026: after three years, Beyond the Code has its first sponsor — and there's a good story behind why it's FirstRead. Yitzy is joined by returning guest Mike Bacina, now a partner at NXT Law leading the firm out of Cayman, to talk about how boutique firms are gaining a real edge with AI, why the billable hour quietly works against adoption at big firms, and why "AI will take your job" is the same fear lawyers have had about every technology before it.Sponsored by FirstRead — AI-powered contract help for lawyers. 10% off with code BYNDTHECODE10: https://first-read.com/signup?ref=BEYOND2026`,
+    thumb: `https://img.youtube.com/vi/Lp0G6zUYdzA/maxresdefault.jpg`,
+    audio: `https://anchor.fm/s/dbb6ced0/podcast/play/121328275/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-5-11%2F425939268-44100-2-44ae78bd75b2e.mp3`,
+    spotify: `#`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=Lp0G6zUYdzA`,
+  },
+  {
     id: 186,
     epLabel: `E102`,
     guest: `Snir Levi`,
