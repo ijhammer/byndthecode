@@ -41,7 +41,7 @@ function buildPage(ep) {
   const body    = descBody(ep.desc);
   const label   = ea(fmtLabel(ep));
   const numLine = (ep.date ? ea(ep.date) + ' · ' : '') + label;
-  const epUrl   = 'https://beyondthecode.fm/ep/' + ep.id + '.html';
+  const epUrl   = 'https://www.beyondthecode.fm/ep/' + ep.id + '.html';
 
   const jsonldObj = {
     '@context': 'https://schema.org',
@@ -52,9 +52,9 @@ function buildPage(ep) {
     image: ep.thumb,
     datePublished: ep.date,
     episodeNumber: ep.epLabel,
-    partOfSeries: { '@type':'PodcastSeries', name:'Beyond the Code', url:'https://beyondthecode.fm' },
+    partOfSeries: { '@type':'PodcastSeries', name:'Beyond the Code', url:'https://www.beyondthecode.fm' },
     author:    { '@type':'Person',       name:'Yitzy Hammer' },
-    publisher: { '@type':'Organization', name:'Beyond the Code', url:'https://beyondthecode.fm' }
+    publisher: { '@type':'Organization', name:'Beyond the Code', url:'https://www.beyondthecode.fm' }
   };
   if (ep.audio) jsonldObj.associatedMedia = { '@type':'AudioObject', contentUrl: ep.audio };
   const jsonld = JSON.stringify(jsonldObj).replace(/<\/script>/gi, '<\\/script>');
@@ -217,10 +217,10 @@ function buildSitemap() {
   const lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    '  <url><loc>https://beyondthecode.fm/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
-    '  <url><loc>https://beyondthecode.fm/episodes.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>',
+    '  <url><loc>https://www.beyondthecode.fm/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
+    '  <url><loc>https://www.beyondthecode.fm/episodes.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>',
     ...EPISODES.map(ep =>
-      '  <url><loc>https://beyondthecode.fm/ep/' + ep.id + '.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>'
+      '  <url><loc>https://www.beyondthecode.fm/ep/' + ep.id + '.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>'
     ),
     '</urlset>'
   ];
