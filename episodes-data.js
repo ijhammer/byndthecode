@@ -1,5 +1,18 @@
 const EPISODES = [
   {
+    id: 182,
+    epLabel: `E105`,
+    guest: `Reuven Rivlin`,
+    title: `Reuven Rivlin — Israel's 10th President on Crypto, Regulation & Building Trust in a New Financial System`,
+    date: `June 29, 2026`,
+    desc: `In one of the most unique conversations in Beyond the Code history, Yitzy sits down with Reuven "Ruby" Rivlin — the 10th President of the State of Israel — to talk about why, at 86 years old, he's betting on crypto.Rivlin is now Honorary President of Bitcore Capital, a publicly traded Israeli company building regulated digital financial infrastructure — including a shekel-pegged stablecoin, Bitcoin-backed lending, and what could become Israel's first crypto-native digital bank and have recently entered into a very significant partnership with Lava Network. The company has assembled a team of former senior government officials, regulators, and law enforcement leaders specifically to earn the trust of the Israeli public and regulators alike.But before all of that, Rivlin was a trial lawyer, a Jerusalem city councilor under Mayor Teddy Kollek, president of Beitar Jerusalem football club, a 30-year Knesset member, Speaker of the Knesset twice, Israel's Communications Minister, and finally — the President of Israel from 2014 to 2021.In this episode:Why Rivlin joined Bitcore Capital and what they're actually buildingThe regulatory challenges facing crypto adoption in IsraelHow assembling former chiefs of police, ministers, and regulators is a trust-building strategy — not just opticsHis vision for Israel as a leader in the digital financial revolutionStories from his legal career, the Knesset, Beitar Jerusalem, and his relationships with world leadersThis episode is brought to you by FirstRead — your go-to source for crypto legal and regulatory intelligence. Get 10% off with code BYNDTHECODE10 at https://first-read.com/signup?ref=BEYOND2026`,
+    thumb: `https://img.youtube.com/vi/7jhRVGbC5zc/maxresdefault.jpg`,
+    audio: `https://anchor.fm/s/dbb6ced0/podcast/play/122136319/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-5-29%2F427020830-44100-2-bccf427bc2593.mp3`,
+    spotify: `https://podcasters.spotify.com/pod/show/byndthecode/episodes/E105-Reuven-Rivlin--Israels-10th-President-on-Crypto--Regulation--Building-Trust-in-a-New-Financial-System-e3ldq9v`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=7jhRVGbC5zc`,
+  },
+  {
     id: 181,
     epLabel: `CS7`,
     guest: `From Big`,
