@@ -1,5 +1,18 @@
 const EPISODES = [
   {
+    id: 183,
+    epLabel: `CS8`,
+    guest: `Michael Terpin`,
+    title: `Michael Terpin on Bitcoin Cycles, Halvings, and the Road to the Next All-Time High`,
+    date: `June 30, 2026`,
+    desc: `In this episode, we cover Michael Terpin's journey from early internet PR (founding Globe Newswire, working with Motley Fool, Earthlink, and AOL) to becoming one of crypto's earliest and most recognized figures — a path that earned him the nickname "the godfather of crypto" from CNBC, by his account, for his PR work on Ethereum, Tether, and roughly 400 other early projects.Terpin walks through his "Four Seasons of Bitcoin" framework — his own thesis on how fear-and-greed cycles play out predictably between halvings — and shares his (unverified, forward-looking) outlook on where he believes Bitcoin's cycle lows and highs may land in the years ahead. He also discusses meeting Coinbase's Brian Armstrong at the first Bitcoin conference in 2013, and his book and fund, both built around the Bitcoin Supercycle thesis.Note: price levels and cycle predictions discussed are Terpin's own analysis and should not be taken as financial advice or confirmed fact.This episode is brought to you by FirstRead — use code BYNDTHECODE10 for 10% off at first-read.com/signup?ref=BEYOND2026.`,
+    thumb: `https://img.youtube.com/vi/mhGAm69rDpI/maxresdefault.jpg`,
+    audio: `https://anchor.fm/s/dbb6ced0/podcast/play/122193027/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-5-30%2F427096164-44100-2-bc0cbca546784.mp3`,
+    spotify: `https://podcasters.spotify.com/pod/show/byndthecode/episodes/CS8-Michael-Terpin-on-Bitcoin-Cycles--Halvings--and-the-Road-to-the-Next-All-Time-High-e3lfhm3`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=mhGAm69rDpI`,
+  },
+  {
     id: 182,
     epLabel: `E105`,
     guest: `Reuven Rivlin`,
