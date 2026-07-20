@@ -54,7 +54,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 .ep-num { font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
 .ep-title-text { font-size:clamp(16px,1.8vw,22px); font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.1; color:var(--white); margin-bottom:12px; transition:color 0.2s; }
 .ep-row:hover .ep-title-text { color:var(--accent); }
-.ep-desc-text { font-size:13px; font-weight:500; line-height:1.7; color:rgba(255,255,255,0.45); max-width:600px; margin-bottom:14px; }
+.ep-desc-text { font-size:13px; font-weight:500; line-height:1.7; color:rgba(255,255,255,0.45); max-width:600px; margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 .ep-cta { font-size:11px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); }
 
 footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); padding:44px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
@@ -166,7 +166,7 @@ fullEpisodes.forEach(ep => {
       <div class="ep-meta">
         <p class="ep-num">${label}${ep.date ? ' · ' + ep.date : ''}</p>
         <h2 class="ep-title-text">${ep.guest} — ${ep.title}</h2>
-        <p class="ep-desc-text">${ep.desc.substring(0,180)}</p>
+        <p class="ep-desc-text">${ep.desc}</p>
         <span class="ep-cta">Listen Now →</span>
       </div>
     </a>`;

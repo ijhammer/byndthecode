@@ -87,7 +87,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-i
 .related-card-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.8); transition:filter 0.3s,transform 0.4s; }
 .related-card:hover .related-card-thumb img { filter:brightness(1); transform:scale(1.05); }
 .related-ep-num { font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
-.related-ep-title { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:-0.01em; color:var(--white); line-height:1.2; transition:color 0.2s; }
+.related-ep-title { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:-0.01em; color:var(--white); line-height:1.2; transition:color 0.2s; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 .related-card:hover .related-ep-title { color:var(--accent); }
 
 footer { background:var(--black); border-top:1px solid rgba(255,255,255,0.07); padding:44px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
@@ -305,7 +305,7 @@ if (ep) {
       <a href="/ep/${r.id}.html" class="related-card">
         <div class="related-card-thumb"><img src="${r.thumb}" alt="${r.guest}" loading="lazy"></div>
         <p class="related-ep-num">${rl}</p>
-        <p class="related-ep-title">${r.guest} — ${r.title.substring(0,60)}</p>
+        <p class="related-ep-title">${r.guest} — ${r.title}</p>
       </a>`;
   });
 } else {
