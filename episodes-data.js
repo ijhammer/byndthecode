@@ -1,5 +1,18 @@
 const EPISODES = [
   {
+    id: 194,
+    epLabel: `Agents Dominate`,
+    guest: `Agents Dominate`,
+    title: `AI Agents to Dominate eToro Trading in 2 Years`,
+    date: `September 15, 2026`,
+    desc: `A few months ago, eToro CEO Yoni Assia made a pretty bold prediction: within two years, AI agents could be responsible for the majority of trading on eToro. At the time, it sounded futuristic. Yoni’s view was that as people become more comfortable trusting AI with work, decisions, and information, the next step is trusting it with money. Instead of clicking every trade yourself, your AI agent could be running sophisticated models, searching for alpha, and making decisions on your behalf. What makes this clip especially interesting now is that eToro has since announced its agentic layer — making Yoni’s prediction look like it may be starting to play out even earlier than expected. As I told him in the conversation: it’s incredibly exciting… and also a little terrifying. Would you trust an AI agent to trade your money? #AI #AIAgents #eToro #Trading #Fintech #Investing #Crypto #BeyondTheCode`,
+    thumb: `https://img.youtube.com/vi/phKFHu-5rnQ/maxresdefault.jpg`,
+    audio: `#`,
+    spotify: `#`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=phKFHu-5rnQ`,
+  },
+  {
     id: 193,
     epLabel: `Communities Hype`,
     guest: `Communities Hype`,
