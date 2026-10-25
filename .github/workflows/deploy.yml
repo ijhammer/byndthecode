@@ -26,11 +26,14 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
+      - name: Generate episode pages and sitemap
+        run: node scripts/build-episodes.js
+
       - name: Commit updated episodes if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add episodes-data.js
+          git add episodes-data.js ep/ sitemap.xml
           if git diff --staged --quiet; then
             echo "No episode changes."
           else
