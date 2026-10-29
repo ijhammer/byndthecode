@@ -1,5 +1,33 @@
 const EPISODES = [
   {
+    id: 199,
+    epLabel: `He Found`,
+    guest: `He Found`,
+    title: `He Found a Mass-Produced Spy Implant Inside His Ledger | Mark Karpelès (ex-Mt. Gox)`,
+    date: `October 29, 2026`,
+    desc: `Mark Karpelès (ex-Mt. Gox) opened his Ledger hardware wallet and found an implant inside. It wasn't a one-off hack. It was cheap, easy to install, and built on a production line.
+Full episode: https://youtu.be/MeG8kFkCPQQ
+#Shorts #Ledger #HardwareWallet #Crypto #Security #BeyondTheCode`,
+    thumb: `https://img.youtube.com/vi/HaMF7A60K6g/maxresdefault.jpg`,
+    audio: `#`,
+    spotify: `#`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=HaMF7A60K6g`,
+  },
+  {
+    id: 198,
+    epLabel: `E110`,
+    guest: `Mark Karpel`,
+    title: `Mark Karpelès on Ledger Implants & the Real Mt. Gox Story`,
+    date: `October 29, 2026`,
+    desc: `Mark Karpelès bought a half-price Ledger Nano X, opened it, and found a mass-produced spy implant. The former Mt. Gox CEO explains what he found, and how to check your own wallet.Mark, now CEO of Karpelès Labs in Japan, spotted the implant before the CryptoBillis story broke. He walks through how it uses an LTE antenna to send data back to the attacker, why he's now sharing his findings with Ledger, and the detector he's building to tell you "clean" or "not clean." He also explains how to open a Nano X yourself.Then we go back to 2010: accepting Bitcoin for web hosting, taking over Mt. Gox from Jed McCaleb, growing from about 6,000 customers to 1 million in two years, the Silk Road fallout and the $5M US seizure, years under public suspicion, and how he'd build a secure exchange today with all-cold storage and FROST. We finish with AI and CatCard, his custom firmware for the Coldcard.Chapters00:00 Welcome, Mark Karpelès04:11 Karpelès Labs: "specialized in doing the impossible"06:14 The CryptoBillis Ledger implant story08:03 Finding a mass-produced implant in a half-price Nano X12:22 Ledger's response, and cooperating now14:40 The risk of a broad reseller network15:50 Mark's implant detector19:22 How to check a Nano X yourself, and the warranty catch-2221:17 A cat-and-mouse game with implant makers23:40 Mark's story: from France to Japan30:49 Taking over Mt. Gox from Jed McCaleb34:10 From 6,000 to 1 million customers35:39 Silk Road, banks and the $5M US seizure41:11 BIP32/BIP39: what could have saved Mt. Gox42:24 Living under suspicion45:42 How he'd build an exchange today48:44 Bankruptcy and creditor recoveries51:31 A few months in Israel55:30 Crypto, AI and 20–30 agents at once1:00:49 CatCard: custom Coldcard firmware1:04:00 Where to follow Mark, and a parting warningGuest: Mark Karpelès – X: https://x.com/MagicalTuxHost: Yitzy Hammer – X: https://x.com/ijhammer · LinkedIn: https://www.linkedin.com/in/ijhammer · DLT Law: https://www.dltlaw.ioWatch the full video: https://youtu.be/MeG8kFkCPQQMore episodes: https://www.beyondthecode.fm/Follow Beyond the Code and leave a rating. It helps more people find the show.`,
+    thumb: `https://img.youtube.com/vi/MeG8kFkCPQQ/maxresdefault.jpg`,
+    audio: `https://anchor.fm/s/dbb6ced0/podcast/play/128304789/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-28%2F435269748-44100-2-1106ae6b11444.mp3`,
+    spotify: `https://podcasters.spotify.com/pod/show/byndthecode/episodes/E110-Mark-Karpels-on-Ledger-Implants--the-Real-Mt--Gox-Story-e3ra26l`,
+    apple: `#`,
+    youtube: `https://www.youtube.com/watch?v=MeG8kFkCPQQ`,
+  },
+  {
     id: 197,
     epLabel: `Human Touch`,
     guest: `Human Touch`,
